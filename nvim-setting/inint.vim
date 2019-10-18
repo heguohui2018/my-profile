@@ -6,6 +6,10 @@ nnoremap <leader>e :e ~/.config/nvim/init.vim
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
+nnoremap <leader>ch :!open -a "/Applications/Google Chrome.app" %
+nnoremap <leader>ff :!open -a "/Applications/Firefox.app" %
+nnoremap <leader>sf :!open -a "/Applications/safari.app" %
+
 " basic map
 inoremap jj <Esc>
 let mapleader = ","      " 定义<leader>键
