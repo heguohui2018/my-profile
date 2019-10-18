@@ -9,4 +9,4 @@
     
     ranger是终端下非常好用的文件预览工具,有类似vim的按键方式，用来浏览文件非常好用。
     ranger安装：
-                Mac    `brew install ranger`
+                Mac    ```brew install ranger```
