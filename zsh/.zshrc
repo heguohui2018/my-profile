@@ -1,10 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# anaconda
-export PATH=/home/username/anaconda/bin:$PATH
-
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/apple/.oh-my-zsh"
 
@@ -15,7 +11,6 @@ export ZSH="/Users/apple/.oh-my-zsh"
 #
 # zsh 提示符主图
 ZSH_THEME="spaceship"
-
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,13 +65,13 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  autojump
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  colored-man-pages
-  zsh-completions
-  vi-mode
+	git
+	autojump
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	colored-man-pages
+	zsh-completions
+	vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -119,8 +114,9 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -130,36 +126,17 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
-
-
 # nvim别名
 alias vim='nvim'
 alias vi='nvim'
+
 alias cat='bat'
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # 设置neovim为默认编辑器
 EDITOR=nvim 
 export EDITOR
 
-
-
-
-
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
