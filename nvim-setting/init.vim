@@ -53,6 +53,7 @@ map <leader>t<leader> :tabnext <cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible         " 设置不兼容原始vi模式
 set clipboard=unnamed
+set noshowmode
 filetype on              " 设置开启文件类型侦测
 filetype plugin on       " 设置加载对应文件类型的插件
 set noeb                 " 关闭错误的提示
@@ -176,6 +177,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tjdevries/coc-zsh',{'for':['sh']}
 
+Plug 'Yggdroot/LeaderF'
 Plug 'godlygeek/tabular'
 Plug 'SidOfc/mkdx'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -197,6 +199,8 @@ colorscheme gruvbox
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#coc#enabled = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -230,6 +234,8 @@ let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_bgcolor_term = 202
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_concealcursor = 0
+let g:indentLine_faster = 1
 
 " Or, you could use neovim's floating text feature.
 let g:echodoc#enable_at_startup = 1
@@ -264,7 +270,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
 " tagbar
-let g:tagbar_width = 30
+let g:tagbar_width = 35
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
 let tagbar_rightt=1
 " tagbar 子窗口中不显示冗余帮助信息 
@@ -329,6 +335,11 @@ noremap <leader>= :Tab /=<cr>
 
 " LeaderF
 noremap <leader>f :LeaderfFile ~<cr>
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PopupWidth = &columns * 3 / 5
+let g:Lf_PopupHeight = float2nr(&lines * 0.7)
+let g:Lf_PopupPosition = [1,250]
 let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
@@ -339,8 +350,8 @@ let g:Lf_UseCache = 0
 noremap <leader>F :Ack!<space>
 
 " emmet
-let g:user_emmet_mode='a'
-autocmd FileType html,css EmmetInstall
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,scss EmmetInstall
 
 " python3
 let g:python3_host_prog = '/usr/local/bin/python3'
