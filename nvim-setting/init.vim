@@ -339,7 +339,7 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PopupWidth = &columns * 3 / 5
 let g:Lf_PopupHeight = float2nr(&lines * 0.7)
-let g:Lf_PopupPosition = [1,250]
+let g:Lf_PopupPosition = [1,200]
 let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']

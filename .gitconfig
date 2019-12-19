@@ -14,6 +14,9 @@
 	editor = nvim
 	excludesfile = ~/.gitignore_global
 
+	# Use custom `.gitignore` and `.gitattributes`
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 25 commits
 	l = log --pretty=oneline -n 25 --graph --abbrev-commit
@@ -109,9 +112,24 @@
 	new = green # additions
 
 [color "status"]
-
 	added = yellow
 	changed = green
 	untracked = cyan
 
+[commit]
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true
 
+[help]
+	# Automatically correct and execute mistyped commands
+	autocorrect = 1
+
+[merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+
+[push]
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
+	# Make `git push` push relevant annotated tags when pushing branches out.
+	followTags = true

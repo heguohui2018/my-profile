@@ -72,6 +72,7 @@ plugins=(
 	colored-man-pages
 	zsh-completions
 	vi-mode
+	git-open
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,6 +118,7 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export GOPATH=/home/apple/mygo
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
