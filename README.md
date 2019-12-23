@@ -1,4 +1,4 @@
-# my-profil
+# 配置文件
     介绍一些经常使用的终端工具,例如：zsh，ranger，tmux等
 
 ## vim
