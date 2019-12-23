@@ -57,7 +57,6 @@ set cmdheight=2          " 设置命令行的高度
 set showcmd              " select模式下显示选中的行数
 set laststatus=2         " 总是显示状态栏
 set number               " 开启行号显示
-set textwidth=80
 set cursorline
 set cursorcolumn
 set numberwidth=1
@@ -73,17 +72,15 @@ set tabstop=4            " 设置编辑时制表符占用空格数
 set shiftwidth=4         " 设置格式化时制表符占用空格数
 set softtabstop=4        " 设置4个空格为制表符
 filetype indent on       " 自适应不同语言的智能缩进
-set nowrap               " 禁止折行
+set wrap                 " 禁止折行
 set backspace=2          " 使用回车键正常处理indent,eol,start等
-set nofoldenable         " 禁用折叠代码
-
+set foldenable           " 禁用折叠代码
+set textwidth=80
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码补全
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu             " vim自身命名行模式智能补全
 set completeopt-=preview " 补全时不显示窗口，只显示补全列表
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 搜索设置
@@ -138,7 +135,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -272,8 +268,6 @@ let g:tagbar_compact=1
 noremap <silent> <leader>t :TagbarToggle<cr>
 inoremap <silent> <leader>t <esc> :TagbarToggle<cr>
 
-"text object
-
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
 " Default mapping
@@ -285,13 +279,6 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
-
-" interestingwords
-noremap <silent> <leader>k :call InterestingWords('n')<cr>
-noremap <silent> <leader>k :call UncolorAllWords()<cr>
-
-noremap <silent> n :call WordNavigation('forward')<cr>
-noremap <silent> N :call WordNavigation('backward')<cr>
 
 " incsearch.vim
 map /  <Plug>(incsearch-forward)
@@ -337,9 +324,6 @@ let g:Lf_WildIgnore = {
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 " let g:Lf_UseCache = 0
-
-" ack
-noremap <leader>F :Ack!<space>
 
 " emmet
 let g:user_emmet_install_global = 0
@@ -392,7 +376,7 @@ let g:mkdx#settings = {
     \              'timeout':    3,
     \              'host':       '',
     \              'relative':   1,
-    \              'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/9001.0.0000.000 vim-mkdx/1.9.0'
+    \              'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like					Gecko) Chrome/9001.0.0000.000 vim-mkdx/1.9.0'
     \               },
     \           'fragment': {
     \              'jumplist': 1,
