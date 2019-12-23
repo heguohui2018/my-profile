@@ -24,10 +24,10 @@ noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 
 " split window
-noremap <leader>sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap <leader>sj :set splitbelow<CR>:split<CR>
-noremap <leader>sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap <leader>sl :set splitright<CR>:vsplit<CR>
+noremap <space>sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap <space>sj :set splitbelow<CR>:split<CR>
+noremap <space>vh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap <space>vl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -41,13 +41,6 @@ noremap <right> :vertical resize+5<CR>
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove <cr>
-map <leader>t<leader> :tabnext <cr>
 
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -64,6 +57,7 @@ set cmdheight=2          " 设置命令行的高度
 set showcmd              " select模式下显示选中的行数
 set laststatus=2         " 总是显示状态栏
 set number               " 开启行号显示
+set textwidth=80
 set cursorline
 set cursorcolumn
 set numberwidth=1
@@ -337,14 +331,12 @@ noremap <leader>= :Tab /=<cr>
 noremap <leader>f :LeaderfFile ~<cr>
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
-let g:Lf_PopupWidth = &columns * 3 / 5
-let g:Lf_PopupHeight = float2nr(&lines * 0.7)
-let g:Lf_PopupPosition = [1,200]
+let g:Lf_PopupHeight = float2nr(&lines * 0.6)
 let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
-let g:Lf_UseCache = 0
+" let g:Lf_UseCache = 0
 
 " ack
 noremap <leader>F :Ack!<space>

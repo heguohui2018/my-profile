@@ -4,6 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/apple/.oh-my-zsh"
 
+# Macport配置
+export PATH="/opt/local/bin:$PATH"
+export PATH="/opt/local/sbin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -126,7 +129,6 @@ alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
-alias lt='ls --tree'
 
 # nvim别名
 alias vim='nvim'
@@ -139,6 +141,3 @@ EDITOR=nvim
 export EDITOR
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
