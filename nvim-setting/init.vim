@@ -130,7 +130,6 @@ Plug 'honza/vim-snippets'
 Plug 'majutsushi/tagbar'
 Plug 'romainl/vim-qf'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'lfv89/vim-interestingwords'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -175,6 +174,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/csv.vim',{'for':['csv']}
 Plug 'jceb/vim-orgmode'
 Plug 'janko/vim-test'
+
+" 生成随机文本
+Plug 'ftan84/vim-khaled-ipsum'
 call plug#end()
 
 " 安装、更新、删除插件
