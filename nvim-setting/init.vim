@@ -9,7 +9,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "
 " basic map
 inoremap jj <Esc>
 let mapleader = ","      " 定义<leader>键
-
+let g:maplocalleader = '<space>'
 noremap J 5j
 noremap K 5k
 noremap H ^
@@ -24,10 +24,10 @@ noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 
 " split window
-noremap <space>sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap <space>sj :set splitbelow<CR>:split<CR>
-noremap <space>vh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap <space>vl :set splitright<CR>:vsplit<CR>
+noremap <space>wk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap <space>wj :set splitbelow<CR>:split<CR>
+noremap <space>wh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap <space>wl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -63,6 +63,7 @@ set numberwidth=1
 set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
+set timeout
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,8 +176,14 @@ Plug 'chrisbra/csv.vim',{'for':['csv']}
 Plug 'jceb/vim-orgmode'
 Plug 'janko/vim-test'
 
+" 时间统计
+Plug 'wakatime/vim-wakatime'
 " 生成随机文本
 Plug 'ftan84/vim-khaled-ipsum'
+
+" 交互式查找器
+Plug 'liuchengxu/vim-clap'
+
 call plug#end()
 
 " 安装、更新、删除插件
@@ -477,3 +484,7 @@ nmap <Leader>tt <Plug>(coc-translator-p)
 nmap <Leader>te <Plug>(coc-translator-e)
 " replace
 nmap <Leader>tr <Plug>(coc-translator-r)
+
+" waketime
+let g:wakatime_PythonBinary = '/usr/bin/python'  " (Default: 'python')
+
