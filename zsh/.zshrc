@@ -125,19 +125,51 @@ export GOPATH=/home/apple/mygo
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# brew
+alias bi="brew install"
+alias bci="brew cask install"
+
+# nvim别名
+alias vim='nvim'
+alias vi='nvim'
+# 设置neovim为默认编辑器
+EDITOR=nvim 
+export EDITOR
+
+# lsd
 alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 
-# nvim别名
-alias vim='nvim'
-alias vi='nvim'
+# clear
+alias c="clear"
+
+# Create parent directories on demand
+alias mkdir='mkdir -pv'
+
+# Colorize diff output
+alias diff='colordiff'
 
 alias cat='bat'
 
-# 设置neovim为默认编辑器
-EDITOR=nvim 
-export EDITOR
+# handy short cuts 
+alias h='history'
+alias j='jobs -l'
+
+# cd
+alias ..="cd .."
+alias ...="cd ..;cd .."
+# npm
+alias ni="npm install"
+alias nig="npm install -g"
+
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# HSTR configuration - add this to ~/.zshrc
+alias hh=hstr                    # hh to be alias for hstr
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+
