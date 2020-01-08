@@ -28,9 +28,10 @@
     "translator.engines": ["google", "bing"],
 	"translator.window.maxWidth":300,
 	"translator.window.maxHeight":400,
-	"phpls.enable":true,
-	"tsserver.enable": true,
 	"javascript.suggest.names": true,
-	"javascript.suggest.completeFunctionCalls": true,
-	"javascript.validate.enable": true
+	"javascript.showUnused": true,
+	"javascript.validate.enable": true,
+	"javascript.preferences.importModuleSpecifier": "relative",	
+	"phpls.enable":true,
+	"tsserver.enable": true
 }

@@ -69,7 +69,6 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	autojump
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	colored-man-pages
@@ -154,8 +153,8 @@ alias diff='colordiff'
 alias cat='bat'
 
 # handy short cuts 
-alias h='history'
-alias j='jobs -l'
+alias ht='history'
+alias jl='jobs -l'
 
 # cd
 alias ..="cd .."
@@ -163,7 +162,6 @@ alias ...="cd ..;cd .."
 # npm
 alias ni="npm install"
 alias nig="npm install -g"
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -173,3 +171,4 @@ setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"

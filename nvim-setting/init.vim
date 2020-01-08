@@ -4,7 +4,7 @@ autocmd! bufwritepost ~/.config/nvim/init.vim :source ~/.config/nvim/init.vim
 noremap <leader>e :e ~/.config/nvim/init.vim<cr>
 
 " 打开文件自动定位到最后编辑的位置
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+autocmd BufReadPost * if line("'\"") > 2 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
 " basic map
 inoremap jj <Esc>
@@ -123,13 +123,11 @@ Plug 'itchyny/vim-cursorword'
 " 文档工具
 Plug 'yianwillis/vimcdoc'
 Plug 'rizzatti/dash.vim'
-Plug 'Shougo/echodoc.vim'
 
 " 代码编辑
 Plug 'Yggdroot/indentLine'
 Plug 'honza/vim-snippets'
 Plug 'majutsushi/tagbar'
-Plug 'romainl/vim-qf'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -157,6 +155,8 @@ Plug 'rhysd/clever-f.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " web开发
+Plug 'digitaltoad/vim-pug'
+Plug 'dNitro/vim-pug-complete'
 Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
 Plug 'othree/html5.vim',{'for':['html']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
@@ -173,16 +173,17 @@ Plug 'SidOfc/mkdx'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/csv.vim',{'for':['csv']}
+
 Plug 'jceb/vim-orgmode'
+Plug 'vim-scripts/utl.vim'
+
 Plug 'janko/vim-test'
 
 " 时间统计
 Plug 'wakatime/vim-wakatime'
+
 " 生成随机文本
 Plug 'ftan84/vim-khaled-ipsum'
-
-" 交互式查找器
-Plug 'liuchengxu/vim-clap'
 
 call plug#end()
 
@@ -233,15 +234,8 @@ let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_bgcolor_term = 202
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_concealcursor = 0
+let g:indentLine_concealcursor = 1
 let g:indentLine_faster = 1
-
-" Or, you could use neovim's floating text feature.
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-" To use a custom highlight for the float window,
-" change Pmenu to your highlight group
-highlight link EchoDocFloat Pmenu
 
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
