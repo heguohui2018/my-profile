@@ -122,6 +122,11 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export GOPATH=/home/apple/mygo
 
+export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='\'
+export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always {} | head -500"'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # brew

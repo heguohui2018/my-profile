@@ -1,7 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto reload init.vim when editing it
 autocmd! bufwritepost ~/.config/nvim/init.vim :source ~/.config/nvim/init.vim
-noremap <leader>e :e ~/.config/nvim/init.vim<cr>
 
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 2 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
@@ -112,8 +111,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 " UI
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
+" Plug 'liuchengxu/space-vim-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" vim 配设方案设计工具包
+Plug 'lifepillar/vim-colortemplate'
+
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -155,13 +159,13 @@ Plug 'rhysd/clever-f.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " web开发
-Plug 'digitaltoad/vim-pug'
-Plug 'dNitro/vim-pug-complete'
 Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
 Plug 'othree/html5.vim',{'for':['html']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mattn/webapi-vim'
+Plug 'posva/vim-vue'
 
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -231,10 +235,10 @@ let g:webdevicons_enable_startify = 1
 
 " indentline
 let g:indentLine_enabled = 1
-let g:indentLine_color_term = 239
-let g:indentLine_bgcolor_term = 202
+let g:indentLine_color_term = 85
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_concealcursor = 1
+let g:indentLine_first_char = '|'
+let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_faster = 1
 
 " => Syntastic (syntax checker)
@@ -330,7 +334,8 @@ let g:Lf_WildIgnore = {
 
 " emmet
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,scss EmmetInstall
+" autocmd FileType html,css,scss,javascript EmmetInstall
+let g:user_emmet_mode='a' 
 
 " python3
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -401,8 +406,13 @@ let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},
     \ 'uml': {},
-    \ 'maid': {}
+    \ 'maid': {},
+	\ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {}
     \ }
+
 " use a custom markdown style must be absolute path
 let g:mkdp_markdown_css = ''
 

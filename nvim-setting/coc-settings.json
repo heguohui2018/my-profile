@@ -33,5 +33,7 @@
 	"javascript.validate.enable": true,
 	"javascript.preferences.importModuleSpecifier": "relative",	
 	"phpls.enable":true,
-	"tsserver.enable": true
+	"tsserver.enable": true,
+	"vetur.completion.autoImport": true,
+	"vetur.format.options.tabSize": 4
 }
