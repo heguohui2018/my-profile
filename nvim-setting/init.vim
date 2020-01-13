@@ -63,9 +63,11 @@ set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 set timeout
+set suffixesadd=.html,.css,.js,.vue,.rb,.vim,.sh  "跳转到光标下的文件
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent
 set smartindent
 set tabstop=4            " 设置编辑时制表符占用空格数
@@ -130,6 +132,7 @@ Plug 'rizzatti/dash.vim'
 
 " 代码编辑
 Plug 'Yggdroot/indentLine'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
@@ -161,6 +164,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " web开发
 Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
 Plug 'othree/html5.vim',{'for':['html']}
+Plug 'AndrewRadev/tagalong.vim'
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -334,7 +338,6 @@ let g:Lf_WildIgnore = {
 
 " emmet
 let g:user_emmet_install_global = 0
-" autocmd FileType html,css,scss,javascript EmmetInstall
 let g:user_emmet_mode='a' 
 
 " python3
@@ -484,11 +487,23 @@ noremap <silent> <space>p  :<C-u>CocListResume<CR>
 " coc-translator
 " popup
 nmap <Leader>tt <Plug>(coc-translator-p)
+
 " echo
 nmap <Leader>te <Plug>(coc-translator-e)
+
 " replace
 nmap <Leader>tr <Plug>(coc-translator-r)
+
+" coc-highlight
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " waketime
 let g:wakatime_PythonBinary = '/usr/bin/python'  " (Default: 'python')
 
+" 自定义代码片段
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsExpandTrigger="<c-r>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]

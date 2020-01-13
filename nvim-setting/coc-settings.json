@@ -5,12 +5,7 @@
     "suggest.echodocSupport": true,
     "suggest.triggerAfterInsertEnter": true,
 	"suggest.snippetIndicator": " $ ",
-    "snippets.autoTrigger": true,
     "snippets.snipmate.enable": true,
-    "snippets.extends": {
-        "javascriptreact": ["javascript"],
-        "typescript": ["javascript"]
-    },
     "json.enable": true,
     "html.enable": true,
 	"html.format.enable":true,
@@ -35,5 +30,8 @@
 	"phpls.enable":true,
 	"tsserver.enable": true,
 	"vetur.completion.autoImport": true,
-	"vetur.format.options.tabSize": 4
+	"vetur.format.options.tabSize": 4,
+	"highlight.document.enable": true,
+	"highlight.colors.enable":false,
+	"git.enableGlobalStatus": true
 }
