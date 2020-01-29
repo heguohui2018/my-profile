@@ -126,7 +126,6 @@ export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
 # Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='\'
 export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always {} | head -500"'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # brew
@@ -177,3 +176,5 @@ export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/opt/apr/bin:$PATH"
