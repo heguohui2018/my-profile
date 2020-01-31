@@ -113,7 +113,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 " UI
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
-" Plug 'liuchengxu/space-vim-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -181,6 +180,7 @@ Plug 'SidOfc/mkdx'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/csv.vim',{'for':['csv']}
+Plug 'liuchengxu/graphviz.vim'
 
 Plug 'jceb/vim-orgmode'
 Plug 'vim-scripts/utl.vim'
@@ -241,7 +241,6 @@ let g:webdevicons_enable_startify = 1
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 85
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_first_char = '|'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_faster = 1
 
@@ -339,6 +338,7 @@ let g:Lf_WildIgnore = {
 " emmet
 let g:user_emmet_install_global = 0
 let g:user_emmet_mode='a' 
+autocmd FileType html,css,vue EmmetInstall
 
 " python3
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -503,7 +503,7 @@ let g:wakatime_PythonBinary = '/usr/bin/python'  " (Default: 'python')
 " 自定义代码片段
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsExpandTrigger="<c-r>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="g<c-e>"
+let g:UltiSnipsJumpForwardTrigger="g<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="g<c-k>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]
