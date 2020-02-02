@@ -117,7 +117,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " vim 配设方案设计工具包
-Plug 'lifepillar/vim-colortemplate'
+" Plug 'lifepillar/vim-colortemplate'
 
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -133,7 +133,6 @@ Plug 'rizzatti/dash.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -144,6 +143,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-fugitive'
+Plug 'Yggdroot/LeaderF'
+Plug 'godlygeek/tabular'
 
 " text object
 Plug 'wellle/targets.vim'
@@ -163,19 +164,20 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " web开发
 Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
 Plug 'othree/html5.vim',{'for':['html']}
-Plug 'AndrewRadev/tagalong.vim'
+Plug 'AndrewRadev/tagalong.vim',{'for':['html','php']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
 Plug 'mattn/webapi-vim'
-Plug 'posva/vim-vue'
+Plug 'posva/vim-vue',{'for':['vue']}
+
+" php手册
+Plug 'heguohui2018/vim-php-manual',{'for':['php']}
 
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tjdevries/coc-zsh',{'for':['sh']}
 
-Plug 'Yggdroot/LeaderF'
-Plug 'godlygeek/tabular'
 Plug 'SidOfc/mkdx'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vimwiki/vimwiki'
@@ -183,12 +185,6 @@ Plug 'chrisbra/csv.vim',{'for':['csv']}
 Plug 'liuchengxu/graphviz.vim'
 
 Plug 'jceb/vim-orgmode'
-Plug 'vim-scripts/utl.vim'
-
-Plug 'janko/vim-test'
-
-" 时间统计
-Plug 'wakatime/vim-wakatime'
 
 " 生成随机文本
 Plug 'ftan84/vim-khaled-ipsum'
@@ -268,15 +264,6 @@ let g:ale_set_highlights = 0
 " Only run linting when saving the file
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-
-" tagbar
-let g:tagbar_width = 35
-" 设置 tagbar 子窗口的位置出现在主编辑区的左边 
-let tagbar_rightt=1
-" tagbar 子窗口中不显示冗余帮助信息 
-let g:tagbar_compact=1
-noremap <silent> <leader>t :TagbarToggle<cr>
-inoremap <silent> <leader>t <esc> :TagbarToggle<cr>
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -461,7 +448,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-定义)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -484,21 +471,25 @@ noremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 noremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" 以浮动文本显示文档信息
+nnoremap <silent>ed  :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+
 " coc-translator
 " popup
 nmap <Leader>tt <Plug>(coc-translator-p)
-
-" echo
-nmap <Leader>te <Plug>(coc-translator-e)
 
 " replace
 nmap <Leader>tr <Plug>(coc-translator-r)
 
 " coc-highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" waketime
-let g:wakatime_PythonBinary = '/usr/bin/python'  " (Default: 'python')
 
 " 自定义代码片段
 let g:UltiSnipsEditSplit = 'horizontal'
