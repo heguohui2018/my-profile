@@ -1,15 +1,18 @@
 {
 	"coc.preferences.enableFloatHighlight":true,
 	"coc.preferences.colorSupport": true,
+	"coc.preferences.hoverTarget": "float",
+	"coc.preferences.messageLevel": "more",
+	"coc.preferences.jumpCommand": "edit",
     "suggest.noselect": false,
-    "suggest.echodocSupport": true,
     "suggest.triggerAfterInsertEnter": true,
 	"suggest.snippetIndicator": " $ ",
+	"suggest.floatEnable": true,
     "snippets.snipmate.enable": true,
     "json.enable": true,
     "html.enable": true,
 	"html.format.enable":true,
-    "html.filetypes": ["html","handlebars"],
+    "html.filetypes": ["html","handlebars","php"],
 	"html.suggest.html5":true,
 	"html.format.indentInnerHtml":true,
 	"html.validate.html":true,
@@ -32,6 +35,68 @@
 	"vetur.completion.autoImport": true,
 	"vetur.format.options.tabSize": 4,
 	"highlight.document.enable": true,
-	"highlight.colors.enable":false,
-	"git.enableGlobalStatus": true
+	"highlight.colors.enable":true,
+	"git.enableGlobalStatus": true,
+	"prettier.useTabs": true,
+	"prettier.tabWidth":4,
+	"explorer.width": 35,
+	"explorer.icon.enableNerdfont": true,
+	"explorer.icon.enableVimDevions": true,
+	"explorer.keyMappings": {
+		"k": "nodePrev",
+		"j": "nodeNext",
+
+		"*": "toggleSelection",
+		"<tab>": "actionMenu",
+
+		"h": "collapse",
+		"l": "expand",
+		"J": ["toggleSelection", "normal:j"],
+		"K": ["toggleSelection", "normal:k"],
+		"gl": "expandRecursive",
+		"gh": "collapseRecursive",
+		"o": "expandOrCollapse",
+		"<cr>": "open",
+		"e": "open",
+		"E": "openInVsplit",
+		"t": "openInTab",
+		"<bs>": "gotoParent",
+
+		"y": "copyFilepath",
+		"Y": "copyFilename",
+		"c": "copyFile",
+		"x": "cutFile",
+		"p": "pasteFile",
+		"d": "delete",
+		"D": "deleteForever",
+
+		"a": "addFile",
+		"A": "addDirectory",
+		"r": "rename",
+
+		".": "toggleHidden",
+		"R": "refresh",
+
+		"?": "help",
+		"q": "quit",
+		"X": "systemExecute",
+		"gd": "listDrive",
+
+		"f": "search",
+		"F": "searchRecursive",
+
+		"gf": "gotoSource:file",
+		"gb": "gotoSource:buffer",
+
+		"[[": "sourcePrev",
+		"]]": "sourceNext",
+
+		"[d": "diagnosticPrev",
+		"]d": "diagnosticNext",
+
+		"[c": "gitPrev",
+		"]c": "gitNext",
+		"<<": "gitStage",
+		">>": "gitUnstage"
+	}
 }

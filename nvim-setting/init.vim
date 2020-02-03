@@ -119,15 +119,13 @@ Plug 'vim-airline/vim-airline-themes'
 " vim 配设方案设计工具包
 " Plug 'lifepillar/vim-colortemplate'
 
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/vim-cursorword'
 
 " 文档工具
 Plug 'yianwillis/vimcdoc'
 Plug 'rizzatti/dash.vim'
+Plug 'wlemuel/vim-tldr'
 
 " 代码编辑
 Plug 'Yggdroot/indentLine'
@@ -138,13 +136,13 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/LeaderF'
 Plug 'godlygeek/tabular'
+Plug 'liuchengxu/vista.vim'
 
 " text object
 Plug 'wellle/targets.vim'
@@ -168,11 +166,10 @@ Plug 'AndrewRadev/tagalong.vim',{'for':['html','php']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
-Plug 'mattn/webapi-vim'
 Plug 'posva/vim-vue',{'for':['vue']}
 
-" php手册
-Plug 'heguohui2018/vim-php-manual',{'for':['php']}
+" php
+Plug 'tobyS/pdv'
 
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -185,6 +182,9 @@ Plug 'chrisbra/csv.vim',{'for':['csv']}
 Plug 'liuchengxu/graphviz.vim'
 
 Plug 'jceb/vim-orgmode'
+
+" 数据库工具
+Plug 'tpope/vim-dadbod'
 
 " 生成随机文本
 Plug 'ftan84/vim-khaled-ipsum'
@@ -213,22 +213,8 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-" nerdtree
-let g:NERDTreeWinPos = "right"
-noremap <silent> <leader>n :NERDTreeToggle<cr>
-inoremap <silent> <leader>n <esc> :NERDTreeToggle<cr>
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1         
-let g:NERDTreeHighlightFoldersFullName = 1 
-let g:NERDTreeDirArrowExpandable='▷'
-let g:NERDTreeDirArrowCollapsible='▼'
-
 " vim-devicons
 let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_conceal_nerdtree_brackets = 0
 let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_startify = 1
@@ -237,33 +223,7 @@ let g:webdevicons_enable_startify = 1
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 85
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_faster = 1
-
-" => Syntastic (syntax checker)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_linters = {
-\ 'jsx': ['stylelint', 'eslint'],
-\ 'javascript': ['stylelint', 'eslint'],
-\ }
-let g:ale_linter_aliases = {'jsx': 'css'}
-let g:ale_fixers = {
-\   '*': ['prettier', 'eslint'],
-\   'javascript': ['prettier', 'eslint'],
-\   'graphql': ['prettier', 'eslint'],
-\   'gql': ['prettier', 'eslint']
-\}
-
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
-nmap <silent> <leader>a <Plug>(ale_next_wrap)
-
-" Disabling highlighting
-let g:ale_set_highlights = 0
-
-" Only run linting when saving the file
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+let g:indentLine_showFirstIndentLevel = 0
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -472,7 +432,7 @@ noremap <silent> <space>k  :<C-u>CocPrev<CR>
 noremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " 以浮动文本显示文档信息
-nnoremap <silent>ed  :call <SID>show_documentation()<CR>
+nnoremap <silent><leader>ed  :call <SID>show_documentation()<CR>
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
 		execute 'h '.expand('<cword>')
@@ -491,6 +451,13 @@ nmap <Leader>tr <Plug>(coc-translator-r)
 " coc-highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" coc-explorer
+nmap <leader>n :CocCommand explorer<CR>
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 " 自定义代码片段
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsEnableSnipMate = 1
@@ -498,3 +465,32 @@ let g:UltiSnipsExpandTrigger="g<c-e>"
 let g:UltiSnipsJumpForwardTrigger="g<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="g<c-k>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]
+
+" vim-tldr
+let g:tldr_directory_path = '~/.cache/tldr'
+let g:tldr_split_type = 'horizontal'
+let g:tldr_language = 'zh'
+
+" vista
+let g:vista_sidebar_position = 'vertical botright'
+let g:vista_sidebar_width  = 35
+let g:vista_echo_cursor_strategy = 'floating_win'
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc 
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
