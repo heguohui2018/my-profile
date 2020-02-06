@@ -127,6 +127,9 @@ Plug 'yianwillis/vimcdoc'
 Plug 'rizzatti/dash.vim'
 Plug 'wlemuel/vim-tldr'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " 代码编辑
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
@@ -140,7 +143,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-fugitive'
-Plug 'Yggdroot/LeaderF'
 Plug 'godlygeek/tabular'
 Plug 'liuchengxu/vista.vim'
 
@@ -160,7 +162,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " web开发
-Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
+Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss','php'] }
 Plug 'othree/html5.vim',{'for':['html']}
 Plug 'AndrewRadev/tagalong.vim',{'for':['html','php']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
@@ -168,8 +170,11 @@ Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
 Plug 'posva/vim-vue',{'for':['vue']}
 
-" php
-Plug 'tobyS/pdv'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'noahfrederick/vim-composer'
+Plug 'noahfrederick/vim-laravel'
+Plug 'jwalton512/vim-blade'
 
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -270,17 +275,6 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " tabular
 noremap <leader>\ :Tab /\|<cr>
 noremap <leader>= :Tab /=<cr>
-
-" LeaderF
-noremap <leader>f :LeaderfFile ~<cr>
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-let g:Lf_PopupHeight = float2nr(&lines * 0.6)
-let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-            \}
-" let g:Lf_UseCache = 0
 
 " emmet
 let g:user_emmet_install_global = 0
@@ -455,8 +449,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>n :CocCommand explorer<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>fm  <Plug>(coc-format-selected)
+nmap <leader>fm  <Plug>(coc-format-selected)
 
 " 自定义代码片段
 let g:UltiSnipsEditSplit = 'horizontal'
@@ -475,12 +469,14 @@ let g:tldr_language = 'zh'
 let g:vista_sidebar_position = 'vertical botright'
 let g:vista_sidebar_width  = 35
 let g:vista_echo_cursor_strategy = 'floating_win'
+let g:vista_cursor_delay = 200
+let g:vista_highlight_whole_line=1
+let g:vista_floating_delay=50
 
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
-set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
 "
@@ -488,9 +484,37 @@ set statusline+=%{NearestMethodOrFunction()}
 " you can add the following line to your vimrc 
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_fzf_preview = ['right:50%']
+let g:vista_fzf_preview = ['right:55%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+" fzf
+" Mapping selecting mappings
+nmap <leader>f <plug>(fzf-maps-n)
+xmap <leader>f <plug>(fzf-maps-x)
+omap <leader>f <plug>(fzf-maps-o)
+
+function! s:fzf_statusline()
+	" Override statusline as you like
+	highlight fzf1 ctermfg=161 ctermbg=251
+	highlight fzf2 ctermfg=23 ctermbg=251
+	highlight fzf3 ctermfg=237 ctermbg=251
+	setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Dash
+nmap <silent> <leader>d <Plug>DashSearch
+

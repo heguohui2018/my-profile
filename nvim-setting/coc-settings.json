@@ -4,6 +4,8 @@
 	"coc.preferences.hoverTarget": "float",
 	"coc.preferences.messageLevel": "more",
 	"coc.preferences.jumpCommand": "edit",
+	"coc.source.zsh.enable": true,
+	"coc.source.word.enable": true,
     "suggest.noselect": false,
     "suggest.triggerAfterInsertEnter": true,
 	"suggest.snippetIndicator": " $ ",
@@ -39,9 +41,18 @@
 	"git.enableGlobalStatus": true,
 	"prettier.useTabs": true,
 	"prettier.tabWidth":4,
+	"diagnostic.enable": true,
+	"diagnostic-languageserver.filetypes": {
+		"vim": "vint",
+		"email": "languagetool",
+		"markdown": [ "write-good", "markdownlint" ],
+		"sh": "shellcheck",
+		"php": "phpcs"
+	},
 	"explorer.width": 35,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.icon.enableVimDevions": true,
+	"explorer.previewAction.onHover": true,
 	"explorer.keyMappings": {
 		"k": "nodePrev",
 		"j": "nodeNext",
