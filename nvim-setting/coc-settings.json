@@ -6,6 +6,9 @@
 	"coc.preferences.jumpCommand": "edit",
 	"coc.source.zsh.enable": true,
 	"coc.source.word.enable": true,
+	"coc.source.emoji.enable": true,
+	"coc.source.buffer.enable": true,
+	"coc.source.file.enable": true,
     "suggest.noselect": false,
     "suggest.triggerAfterInsertEnter": true,
 	"suggest.snippetIndicator": " $ ",
@@ -22,9 +25,9 @@
     "html.validate.styles": true,
     "css.enable": true,
 	"css.colorDecorators.enable":true,
-    "css.validate": false,
-	"scss.validate": false,
-	"stylelint.enable": true,
+    "css.validate": true,
+	"scss.validate": true,
+	"css.lint.float": "error",
     "translator.engines": ["google", "bing"],
 	"translator.window.maxWidth":300,
 	"translator.window.maxHeight":400,
@@ -34,6 +37,7 @@
 	"javascript.preferences.importModuleSpecifier": "relative",	
 	"phpls.enable":true,
 	"tsserver.enable": true,
+	"typescript.suggest.enabled": true,
 	"vetur.completion.autoImport": true,
 	"vetur.format.options.tabSize": 4,
 	"highlight.document.enable": true,
@@ -49,6 +53,7 @@
 		"sh": "shellcheck",
 		"php": "phpcs"
 	},
+	"explorer.file.showHiddenFiles": true,
 	"explorer.width": 35,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.icon.enableVimDevions": true,
@@ -109,5 +114,11 @@
 		"]c": "gitNext",
 		"<<": "gitStage",
 		">>": "gitUnstage"
-	}
+	},
+	"svg.completion.insertCloseTagSign": true,
+	"svg.completion.showAdvanced": true,
+	"svg.preview.background": "black",
+	"sql.lintOnSave": true,
+	"python.linting.enabled": true,
+	"python.formatting.provider": "autopep8"
 }

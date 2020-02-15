@@ -113,19 +113,42 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-export GOPATH=/home/apple/mygo
+export GOPATH='/home/apple/mygo'
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/opt/apr/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
+export LDFLAGS="-L/usr/local/opt/imagemagick@6/lib"
+export CPPFLAGS="-I/usr/local/opt/imagemagick@6/include"
+export PATH="/usr/local/opt/qt/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/qt/lib"
+export CPPFLAGS="-I/usr/local/opt/qt/include"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+export PATH="/usr/local/opt/openldap/bin:$PATH"
+export PATH="/usr/local/opt/openldap/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
-export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='\'
-export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always {} | head -500"'
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow -E ".git" -E "node_modules"'
+export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --bind=CTRL-j:down,CTRL-k:up,CTRL-r:toggle+down --border --preview "cat {}" --preview-window=right'
+# export FZF_COMPLETION_OPTS='**'
+
+_fzf_compgen_path() {
+  fd --hidden --follow -E ".git" -E "node_modules" 
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow -E ".git" -E "node_modules" 
+}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # brew
@@ -167,14 +190,8 @@ alias ...="cd ..;cd .."
 alias ni="npm install"
 alias nig="npm install -g"
 
+# laravel
+alias laravel='~/.composer/vendor/bin/laravel'
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# HSTR configuration - add this to ~/.zshrc
-alias hh=hstr                    # hh to be alias for hstr
-setopt histignorespace           # skip cmds w/ leading space from history
-export HSTR_CONFIG=hicolor       # get more colors
-bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
-
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
-export PATH="/usr/local/opt/apr/bin:$PATH"

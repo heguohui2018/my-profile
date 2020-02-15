@@ -170,6 +170,8 @@ Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
 Plug 'posva/vim-vue',{'for':['vue']}
 
+
+" laravel
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 Plug 'noahfrederick/vim-composer'
@@ -183,16 +185,9 @@ Plug 'tjdevries/coc-zsh',{'for':['sh']}
 Plug 'SidOfc/mkdx'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vimwiki/vimwiki'
-Plug 'chrisbra/csv.vim',{'for':['csv']}
 Plug 'liuchengxu/graphviz.vim'
 
 Plug 'jceb/vim-orgmode'
-
-" 数据库工具
-Plug 'tpope/vim-dadbod'
-
-" 生成随机文本
-Plug 'ftan84/vim-khaled-ipsum'
 
 call plug#end()
 
@@ -279,7 +274,7 @@ noremap <leader>= :Tab /=<cr>
 " emmet
 let g:user_emmet_install_global = 0
 let g:user_emmet_mode='a' 
-autocmd FileType html,css,vue EmmetInstall
+autocmd FileType html,css EmmetInstall
 
 " python3
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -455,15 +450,10 @@ nmap <leader>fm  <Plug>(coc-format-selected)
 " 自定义代码片段
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsExpandTrigger="g<c-e>"
-let g:UltiSnipsJumpForwardTrigger="g<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="g<c-k>"
+let g:UltiSnipsExpandTrigger="<leader>gh"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]
-
-" vim-tldr
-let g:tldr_directory_path = '~/.cache/tldr'
-let g:tldr_split_type = 'horizontal'
-let g:tldr_language = 'zh'
 
 " vista
 let g:vista_sidebar_position = 'vertical botright'
@@ -507,14 +497,19 @@ endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+	let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+	let initial_command = printf(command_fmt, shellescape(a:query))
+	let reload_command = printf(command_fmt, '{q}')
+	let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+	call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Dash
 nmap <silent> <leader>d <Plug>DashSearch
 
+
+" vim-tldr
+let g:tldr_directory_path = '~/.cache/tldr'
+let g:tldr_split_type = "horizontal"
+let g:tldr_language = "zh"
