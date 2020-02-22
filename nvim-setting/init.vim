@@ -5,6 +5,12 @@ autocmd! bufwritepost ~/.config/nvim/init.vim :source ~/.config/nvim/init.vim
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 2 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
+" python3
+let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python2_host_prog = "/usr/local/bin/python2"
+" ruby
+let g:ruby_host_prog = '/usr/local/bin/ruby'
+
 " basic map
 inoremap jj <Esc>
 let mapleader = ","      " 定义<leader>键
@@ -63,7 +69,10 @@ set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 set timeout
-set suffixesadd=.html,.css,.js,.vue,.rb,.vim,.sh  "跳转到光标下的文件
+
+
+set termguicolors
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
@@ -158,13 +167,10 @@ Plug 'terryma/vim-smooth-scroll'
 
 Plug 'rhysd/clever-f.vim'
 
-" go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " web开发
-Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss','php'] }
+Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
 Plug 'othree/html5.vim',{'for':['html']}
-Plug 'AndrewRadev/tagalong.vim',{'for':['html','php']}
+Plug 'AndrewRadev/tagalong.vim',{'for':['html']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
@@ -276,8 +282,6 @@ let g:user_emmet_install_global = 0
 let g:user_emmet_mode='a' 
 autocmd FileType html,css EmmetInstall
 
-" python3
-let g:python3_host_prog = '/usr/local/bin/python3'
 
 " mkdx
 let g:mkdx#settings = {

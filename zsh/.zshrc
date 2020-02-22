@@ -69,6 +69,7 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+	autopair
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	colored-man-pages
@@ -81,6 +82,7 @@ source $ZSH/oh-my-zsh.sh
 
 #增加的插件
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/plugins/autopair/autopair.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 autoload -U compinit && compinit
