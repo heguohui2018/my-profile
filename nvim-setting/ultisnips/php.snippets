@@ -1,0 +1,25 @@
+snippet deD "定义目录分割符" b
+define("DS","DIRECTORY_SEPARATOR");
+endsnippet
+
+snippet deR "定义网站根目录" b
+define("ROOT_PATH",getcwd());
+endsnippet
+
+snippet deA "应用目录" b
+define("APP_PATH",ROOT_PATH.DS."Home".DS);
+endsnippet
+
+snippet DBi "数据库插入" b
+DB::table() -> insert(){
+	
+};
+return ;
+endsnippet
+
+snippet DBu "数据库更新" b
+DB::table() -> update(){
+	['$1' => '$2']
+};
+return ;
+endsnippet

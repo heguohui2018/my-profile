@@ -1,15 +1,17 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto reload init.vim when editing it
-autocmd! bufwritepost ~/.config/nvim/init.vim :source ~/.config/nvim/init.vim
+autocmd! bufwritepost $MYVIMRC :source $MYVIMRC
 
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 2 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
 " python3
 let g:python3_host_prog = "/usr/local/bin/python3"
-let g:python2_host_prog = "/usr/local/bin/python2"
 " ruby
 let g:ruby_host_prog = '/usr/local/bin/ruby'
+" node
+let g:node_host_prog = '/usr/local/bin/neovim-node-host'
+
 
 " basic map
 inoremap jj <Esc>
@@ -62,16 +64,14 @@ set cmdheight=2          " 设置命令行的高度
 set showcmd              " select模式下显示选中的行数
 set laststatus=2         " 总是显示状态栏
 set number               " 开启行号显示
-set cursorline
-set cursorcolumn
-set numberwidth=1
+set numberwidth=1		 " 行号宽度
+set cursorline			 " 高亮光标所在的行
+set cursorcolumn		 " 高亮光标所在的列
 set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 set timeout
-
-
-set termguicolors
+set termguicolors		 " 开启真彩色支持
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -83,7 +83,7 @@ set tabstop=4            " 设置编辑时制表符占用空格数
 set shiftwidth=4         " 设置格式化时制表符占用空格数
 set softtabstop=4        " 设置4个空格为制表符
 filetype indent on       " 自适应不同语言的智能缩进
-set wrap                 " 禁止折行
+set wrap                 " 开启折行
 set backspace=2          " 使用回车键正常处理indent,eol,start等
 set foldenable           " 禁用折叠代码
 set textwidth=80
@@ -91,7 +91,7 @@ set textwidth=80
 " 代码补全
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu             " vim自身命名行模式智能补全
-set completeopt-=preview " 补全时不显示窗口，只显示补全列表
+set completeopt-=popup " 补全时不显示窗口，只显示补全列表
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 搜索设置
@@ -136,6 +136,7 @@ Plug 'yianwillis/vimcdoc'
 Plug 'rizzatti/dash.vim'
 Plug 'wlemuel/vim-tldr'
 
+" fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -185,7 +186,7 @@ Plug 'noahfrederick/vim-laravel'
 Plug 'jwalton512/vim-blade'
 
 " coc.nvim代码补全
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'tjdevries/coc-zsh',{'for':['sh']}
 
 Plug 'SidOfc/mkdx'
@@ -208,9 +209,11 @@ colorscheme gruvbox
 
 " airline
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = 'E:'
+let airline#extensions#coc#warning_symbol = 'W:'
+let g:airline#extensions#vista#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -252,20 +255,6 @@ map g/ <Plug>(incsearch-stay)
 let g:EasyMotion_smartcase = 1
 map <leader>w <Plug>(easymotion-bd-w)
 nmap <leader>w <Plug>(easymotion-overwin-w)
-
-" nerdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
 
 " vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -373,11 +362,13 @@ nmap <leader><C-o> <Plug>MarkdownPreview
 nmap <leader><C-s> <Plug>MarkdownPreviewStop
 nmap <leader><C-p> <Plug>MarkdownPreviewToggle
 
-
 " coc
 set shell=/bin/sh
 set nowritebackup
 set signcolumn=yes
+
+" " Add keyword characers 
+" autocmd FileType html,css,scss,javascript,php let b:coc_additional_keywords = ["-"]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -400,8 +391,19 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-定义)
+" 以浮动文本显示文档信息
+nnoremap <silent><leader>ed  :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+
+" coc-highlight
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -415,24 +417,6 @@ noremap <silent> <space>e  :<C-u>CocList extensions<cr>
 noremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 noremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-noremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-noremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-noremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-noremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" 以浮动文本显示文档信息
-nnoremap <silent><leader>ed  :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
 
 " coc-translator
 " popup
@@ -440,9 +424,6 @@ nmap <Leader>tt <Plug>(coc-translator-p)
 
 " replace
 nmap <Leader>tr <Plug>(coc-translator-r)
-
-" coc-highlight
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " coc-explorer
 nmap <leader>n :CocCommand explorer<CR>
