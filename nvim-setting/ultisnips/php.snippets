@@ -10,6 +10,21 @@ snippet deA "应用目录" b
 define("APP_PATH",ROOT_PATH.DS."Home".DS);
 endsnippet
 
+snippet psfi "私有静态字符集设置" b
+private static function initCharset()
+{
+	header("content-type:text/html;charset=utf-8");
+}
+endsnippet
+
+snippet psfi "私有初始化配置文件 " b
+private static function initConfig()
+{
+	$GLOBALS['config'] = require_once(APP_PATH.'Conf'.DS.'config.php');
+}
+endsnippet
+
+
 snippet DBi "数据库插入" b
 DB::table() -> insert(){
 	

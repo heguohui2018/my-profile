@@ -24,6 +24,10 @@ noremap L $
 vnoremap J 5j
 vnoremap K 5k
 
+
+noremap <leader>ga <c-a>
+noremap <leader>gx <c-x>
+
 " window motion
 noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
@@ -176,7 +180,7 @@ Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
 Plug 'posva/vim-vue',{'for':['vue']}
-
+Plug 'vim-vdebug/vdebug'
 
 " laravel
 Plug 'tpope/vim-dispatch'
@@ -188,6 +192,8 @@ Plug 'jwalton512/vim-blade'
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'tjdevries/coc-zsh',{'for':['sh']}
+" 浮动终端
+Plug 'voldikss/vim-floaterm'
 
 Plug 'SidOfc/mkdx'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -468,9 +474,9 @@ let g:vista#renderer#icons = {
 
 " fzf
 " Mapping selecting mappings
-nmap <leader>f <plug>(fzf-maps-n)
-xmap <leader>f <plug>(fzf-maps-x)
-omap <leader>f <plug>(fzf-maps-o)
+nmap <leader>fz <plug>(fzf-maps-n)
+xmap <leader>fz <plug>(fzf-maps-x)
+omap <leader>fz <plug>(fzf-maps-o)
 
 function! s:fzf_statusline()
 	" Override statusline as you like
@@ -498,3 +504,17 @@ nmap <silent> <leader>d <Plug>DashSearch
 let g:tldr_directory_path = '~/.cache/tldr'
 let g:tldr_split_type = "horizontal"
 let g:tldr_language = "zh"
+let g:tldr_enabled_categories = ["osx"]
+let g:tldr_source_zip_url = 'https://github.com/tldr-pages/tldr/archive/master.zip'
+
+let g:floaterm_type='floating'
+let g:floaterm_winblend =0
+let g:floaterm_position='center'
+let g:floaterm_width=0.9
+let g:floaterm_height=0.8
+hi FloatermNF guibg=black
+hi FloatermBorderNF guibg=black  guifg=pink
+let g:floaterm_keymap_new    = '<leader>ft'
+let g:floaterm_keymap_prev   = '<leader>ftp'
+let g:floaterm_keymap_next   = '<leader>ftn'
+let g:floaterm_keymap_toggle = '<leader>ftt'
