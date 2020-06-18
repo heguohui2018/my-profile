@@ -1,4 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " auto reload init.vim when editing it
 autocmd! bufwritepost $MYVIMRC :source $MYVIMRC
 
@@ -76,6 +77,7 @@ set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 set timeout
 set termguicolors		 " 开启真彩色支持
+set scrollbind
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,7 +97,7 @@ set textwidth=80
 " 代码补全
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu             " vim自身命名行模式智能补全
-set completeopt-=popup " 补全时不显示窗口，只显示补全列表
+set completeopt-=popup   " 补全时不显示窗口，只显示补全列表
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 搜索设置
@@ -126,6 +128,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " UI
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
+" Plug 'heguohui2018/gruvbox-plus'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -138,7 +141,6 @@ Plug 'itchyny/vim-cursorword'
 " 文档工具
 Plug 'yianwillis/vimcdoc'
 Plug 'rizzatti/dash.vim'
-Plug 'wlemuel/vim-tldr'
 
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -146,8 +148,8 @@ Plug 'junegunn/fzf.vim'
 
 " 代码编辑
 Plug 'Yggdroot/indentLine'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -174,13 +176,14 @@ Plug 'rhysd/clever-f.vim'
 
 " web开发
 Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
+
 Plug 'othree/html5.vim',{'for':['html']}
 Plug 'AndrewRadev/tagalong.vim',{'for':['html']}
 Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
 Plug 'ap/vim-css-color'
 Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
-Plug 'posva/vim-vue',{'for':['vue']}
 Plug 'vim-vdebug/vdebug'
+Plug 'heguohui2018/vim-bootstrap4-snippets'
 
 " laravel
 Plug 'tpope/vim-dispatch'
@@ -190,17 +193,22 @@ Plug 'noahfrederick/vim-laravel'
 Plug 'jwalton512/vim-blade'
 
 " coc.nvim代码补全
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'tjdevries/coc-zsh',{'for':['sh']}
-" 浮动终端
-Plug 'voldikss/vim-floaterm'
 
-Plug 'SidOfc/mkdx'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" markdown插件
+Plug 'SidOfc/mkdx',{'for': [ 'markdown' ]}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' ,'for': ['markdown']}
 Plug 'vimwiki/vimwiki'
 Plug 'liuchengxu/graphviz.vim'
 
-Plug 'jceb/vim-orgmode'
+" latex插件
+Plug 'lervag/vimtex',{'for':['tex']}
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'gillescastel/latex-snippets',{'for':['tex']}
+Plug 'KeitaNakamura/tex-conceal.vim',{'for':['tex']}
 
 call plug#end()
 
@@ -209,8 +217,9 @@ noremap <leader><leader>i :PlugInstall<cr>
 noremap <leader><leader>u :PlugUpdate<cr>
 noremap <leader><leader>c :PlugClean<cr>
 
-" color sheme
+" " color sheme
 set background=dark
+" colorscheme gruvbox-plus
 colorscheme gruvbox
 
 " airline
@@ -220,6 +229,8 @@ let airline#extensions#coc#error_symbol = 'E:'
 let airline#extensions#coc#warning_symbol = 'W:'
 let g:airline#extensions#vista#enabled = 1
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#vimtex#enabled = 1
+let g:airline#extensions#vista#enabled = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -235,10 +246,12 @@ let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_startify = 1
 
 " indentline
+" 禁用默认缩进线颜色,该用自己自定义的缩进颜色
+let g:indentLine_setColors = 0
+let g:indentLine_noConcealCursor = 1
 let g:indentLine_enabled = 1
-let g:indentLine_color_term = 85
+let g:indentLine_color_term = 0
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_showFirstIndentLevel = 0
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -274,8 +287,8 @@ noremap <leader>= :Tab /=<cr>
 
 " emmet
 let g:user_emmet_install_global = 0
-let g:user_emmet_mode='a' 
-autocmd FileType html,css EmmetInstall
+let g:user_emmet_mode='i' 
+autocmd FileType html,css,scss EmmetInstall
 
 
 " mkdx
@@ -364,26 +377,14 @@ let g:mkdp_port = ''
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
 
-nmap <leader><C-o> <Plug>MarkdownPreview
-nmap <leader><C-s> <Plug>MarkdownPreviewStop
-nmap <leader><C-p> <Plug>MarkdownPreviewToggle
 
 " coc
 set shell=/bin/sh
 set nowritebackup
 set signcolumn=yes
 
-" " Add keyword characers 
-" autocmd FileType html,css,scss,javascript,php let b:coc_additional_keywords = ["-"]
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" 代码补全设置
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" 显示函数签名
+autocmd FileType html,css,javascript,php,python,shell,markdown let b:coc_additional_keywords = ["-","_"]
 
 " 代码片段补全设置
 inoremap <silent><expr> <TAB>
@@ -407,9 +408,18 @@ function! s:show_documentation()
 	endif
 endfunction
 
+" nnoremap <silent><space>ii  call coc#add_extension('coc-json', 'coc-tsserver', 'coc-word','coc-html','coc-css','coc-phpls','coc-python','coc-vimlsp','vim-sql','coc-snippets','coc-texlab','coc-prettier','coc-highlight','coc-git','coc-explorer','coc-emoji','coc-lists')<CR>
+
 " coc-highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -424,6 +434,9 @@ noremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 noremap <silent> <space>o  :<C-u>CocList outline<cr>
 
+" coc-explorer(文件浏览)
+nmap <leader>n :CocCommand explorer<CR>
+
 " coc-translator
 " popup
 nmap <Leader>tt <Plug>(coc-translator-p)
@@ -431,20 +444,17 @@ nmap <Leader>tt <Plug>(coc-translator-p)
 " replace
 nmap <Leader>tr <Plug>(coc-translator-r)
 
-" coc-explorer
-nmap <leader>n :CocCommand explorer<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>fm  <Plug>(coc-format-selected)
-nmap <leader>fm  <Plug>(coc-format-selected)
 
 " 自定义代码片段
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]
 let g:UltiSnipsExpandTrigger="<leader>gh"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]
+
 
 " vista
 let g:vista_sidebar_position = 'vertical botright'
@@ -499,22 +509,29 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " Dash
 nmap <silent> <leader>d <Plug>DashSearch
 
-
-" vim-tldr
-let g:tldr_directory_path = '~/.cache/tldr'
-let g:tldr_split_type = "horizontal"
-let g:tldr_language = "zh"
-let g:tldr_enabled_categories = ["osx"]
-let g:tldr_source_zip_url = 'https://github.com/tldr-pages/tldr/archive/master.zip'
-
-let g:floaterm_type='floating'
-let g:floaterm_winblend =0
-let g:floaterm_position='center'
-let g:floaterm_width=0.9
-let g:floaterm_height=0.8
-hi FloatermNF guibg=black
-hi FloatermBorderNF guibg=black  guifg=pink
-let g:floaterm_keymap_new    = '<leader>ft'
-let g:floaterm_keymap_prev   = '<leader>ftp'
-let g:floaterm_keymap_next   = '<leader>ftn'
-let g:floaterm_keymap_toggle = '<leader>ftt'
+" latex
+" vimtex
+let g:vimtex_enabled=1
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method='skim'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_latexmk_engines = {
+	\ '_'                : '-pdf',
+	\ 'pdflatex'         : '-pdf',
+	\ 'dvipdfex'         : '-pdfdvi',
+	\ 'lualatex'         : '-lualatex',
+	\ 'xelatex'          : '-xelatex',
+	\ 'context (pdftex)' : '-pdf -pdflatex=texexec',
+	\ 'context (luatex)' : '-pdf -pdflatex=context',
+	\ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
+	\}
+let g:livepreview_previewer = 'skim'
+let g:livepreview_engine = 'pdflatex'
+let g:livepreview_cursorhold_recompile = 1
+hi Conceal ctermbg=none
+setlocal spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u

@@ -1,15 +1,22 @@
 {
+	/*激活浮动窗口高亮*/
 	"coc.preferences.enableFloatHighlight":true,
-	"coc.preferences.colorSupport": true,
+	/*保存以下文件类型后进行格式化*/
+	"coc.preferences.formatOnSaveFiletypes": ["html","css","js", "Markdown","php","vim","python,sql"],
+	/*移动到选贤时浮动窗口支持*/
 	"coc.preferences.hoverTarget": "float",
+	"coc.preferences.colorSupport": true,
+	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
 	"coc.source.zsh.enable": true,
 	"coc.source.word.enable": true,
 	"coc.source.emoji.enable": true,
 	"coc.source.buffer.enable": true,
 	"coc.source.file.enable": true,
-	"coc.source.tag.enable": true,
+	/*代码补全时自动选择第一项*/
     "suggest.noselect": false,
+	/*当插入时触发代码补全*/
     "suggest.triggerAfterInsertEnter": true,
+	/*浮动激活*/
 	"suggest.floatEnable": true,
 	"suggest.removeDuplicateItems": true,
     "snippets.snipmate.enable": true,
@@ -19,14 +26,16 @@
 	"html.format.enable":true,
     "html.filetypes": ["html","handlebars"],
 	"html.suggest.html5":true,
+	"html.suggest.ionic": true,
 	"html.validate.html":true,
     "html.validate.scripts": true,
     "html.validate.styles": true,
     "css.enable": true,
     "css.validate": true,
+	"css.colorDecorators.enable": true,
 	"scss.validate": true,
-	"css.lint.float": "error",
-	"scss.lint.float": "error",
+	"css.lint.float": "ignore",
+	"scss.lint.float": "ignore",
     "translator.engines": ["google", "bing"],
 	"javascript.suggest.completeFunctionCalls": true,
 	"javascript.preferences.importModuleSpecifier": "relative",	
@@ -38,8 +47,6 @@
 	"phpls.enable":true,
 	"tsserver.enable": true,
 	"typescript.suggest.enabled": true,
-	"vetur.completion.autoImport": true,
-	"vetur.format.options.tabSize": 4,
 	"highlight.document.enable": true,
 	"highlight.colors.enable":true,
 	"git.enableGlobalStatus": true,
@@ -108,10 +115,12 @@
 		"<<": "gitStage",
 		">>": "gitUnstage"
 	},
-	"svg.completion.insertCloseTagSign": true,
-	"svg.completion.showAdvanced": true,
-	"svg.preview.background": "black",
 	"sql.lintOnSave": true,
+	"sql.lintOnChange": true,
 	"python.linting.enabled": true,
-	"python.formatting.provider": "autopep8"
+	"python.formatting.provider": "autopep8",
+	"python.analysis.diagnosticEnabled": true,
+	"python.jediEnabled": false,
+	"texlab.path": "",
+	"latex.build.executable": "pdflatex"
 }

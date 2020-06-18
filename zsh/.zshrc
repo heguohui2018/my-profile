@@ -15,6 +15,7 @@ export PATH="/opt/local/sbin:$PATH"
 # zsh 提示符主图
 ZSH_THEME="spaceship"
 
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -139,6 +140,7 @@ export PATH="/usr/local/opt/openldap/bin:$PATH"
 export PATH="/usr/local/opt/openldap/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow -E ".git" -E "node_modules"'
 export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --bind=CTRL-j:down,CTRL-k:up,CTRL-r:toggle+down --border --preview "cat {}" --preview-window=right'
@@ -161,8 +163,8 @@ alias bci="brew cask install"
 alias vim='nvim'
 alias vi='nvim'
 # 设置neovim为默认编辑器
-EDITOR=nvim 
-export EDITOR
+export EDITOR='nvim' 
+ 
 
 # lsd
 alias ls='lsd'
