@@ -4,9 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/apple/.oh-my-zsh"
 
-# Macport配置
-export PATH="/opt/local/bin:$PATH"
-export PATH="/opt/local/sbin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -87,19 +84,10 @@ source ~/.oh-my-zsh/custom/plugins/autopair/autopair.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 autoload -U compinit && compinit
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -144,7 +132,6 @@ export PATH="/usr/local/sbin:$PATH"
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow -E ".git" -E "node_modules"'
 export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --bind=CTRL-j:down,CTRL-k:up,CTRL-r:toggle+down --border --preview "cat {}" --preview-window=right'
-# export FZF_COMPLETION_OPTS='**'
 
 _fzf_compgen_path() {
   fd --hidden --follow -E ".git" -E "node_modules" 
