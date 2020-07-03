@@ -1,8 +1,16 @@
 {
 	/*激活浮动窗口高亮*/
 	"coc.preferences.enableFloatHighlight":true,
+	"coc.preferences.bracketEnterImprove": true,
 	/*保存以下文件类型后进行格式化*/
 	"coc.preferences.formatOnSaveFiletypes": ["html","css","js", "Markdown","php","vim","python,sql"],
+	"coc.preferences.formatOnInsertLeave": true,
+	"coc.preferences.rootPatterns": [
+		".git",
+		".hg",
+		".projections.json"
+	],
+	"coc.preferences.formatOnType": true,
 	/*移动到选贤时浮动窗口支持*/
 	"coc.preferences.hoverTarget": "float",
 	"coc.preferences.colorSupport": true,
@@ -14,6 +22,8 @@
 	"coc.source.file.enable": true,
 	/*代码补全时自动选择第一项*/
     "suggest.noselect": false,
+	"suggest.enablePreselect": true,
+	"suggest.fixInsertedWord": true,
 	/*当插入时触发代码补全*/
     "suggest.triggerAfterInsertEnter": true,
 	/*浮动激活*/
@@ -30,6 +40,7 @@
 	"html.validate.html":true,
     "html.validate.scripts": true,
     "html.validate.styles": true,
+	"html.autoClosingTags": true,
     "css.enable": true,
     "css.validate": true,
 	"css.colorDecorators.enable": true,
@@ -52,6 +63,10 @@
 	"git.enableGlobalStatus": true,
 	"prettier.useTabs": true,
 	"prettier.tabWidth":4,
+	"prettier.proseWrap": "always",
+	"prettier.semi": true,
+	"prettier.endOfLine": "auto",
+	"prettier.bracketSpacing": true,
 	"diagnostic.enable": true,
 	"explorer.width": 35,
 	"explorer.icon.enableNerdfont": true,
@@ -117,10 +132,11 @@
 	},
 	"sql.lintOnSave": true,
 	"sql.lintOnChange": true,
-	"python.linting.enabled": true,
+	"python.autoComplete.addBrackets": true,
 	"python.formatting.provider": "autopep8",
+	"python.autoComplete.showAdvancedMembers": true,
+	"python.linting.enabled": true,
 	"python.analysis.diagnosticEnabled": true,
 	"python.jediEnabled": false,
-	"texlab.path": "",
 	"latex.build.executable": "pdflatex"
 }

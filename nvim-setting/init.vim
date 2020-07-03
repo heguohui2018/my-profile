@@ -146,7 +146,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" 代码编辑
+" 代码锁进
 Plug 'Yggdroot/indentLine'
 
 
@@ -186,11 +186,12 @@ Plug 'vim-vdebug/vdebug'
 Plug 'heguohui2018/vim-bootstrap4-snippets'
 
 " laravel
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-projectionist'
-Plug 'noahfrederick/vim-composer'
-Plug 'noahfrederick/vim-laravel'
-Plug 'jwalton512/vim-blade'
+Plug 'tpope/vim-dispatch',{'for':['php']}
+Plug 'tpope/vim-projectionist',{'for':['php']}
+Plug 'noahfrederick/vim-composer',{'for':['php']}
+Plug 'noahfrederick/vim-laravel',{'for':['php']}
+Plug 'jwalton512/vim-blade',{'for':['php']}
+
 
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -217,9 +218,8 @@ noremap <leader><leader>i :PlugInstall<cr>
 noremap <leader><leader>u :PlugUpdate<cr>
 noremap <leader><leader>c :PlugClean<cr>
 
-" " color sheme
+" color sheme
 set background=dark
-" colorscheme gruvbox-plus
 colorscheme gruvbox
 
 " airline
@@ -252,6 +252,8 @@ let g:indentLine_noConcealCursor = 1
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 0
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_fileType = ['html','css','javascript','python','vim','php','markdown','json']
+let g:vim_json_syntax_conceal = 0
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -383,8 +385,13 @@ set shell=/bin/sh
 set nowritebackup
 set signcolumn=yes
 
+" 高亮markdown中代码
+let g:markdown_fenced_languages = ['css', 'js=javascript']
+
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
 " 显示函数签名
-autocmd FileType html,css,javascript,php,python,shell,markdown let b:coc_additional_keywords = ["-","_"]
+autocmd FileType html,css,javascript,php,python,shell,markdown let b:coc_additional_keywords = ["-","_","."]
 
 " 代码片段补全设置
 inoremap <silent><expr> <TAB>
