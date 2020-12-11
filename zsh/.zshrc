@@ -1,9 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/apple/.oh-my-zsh"
-
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -11,7 +14,6 @@ export ZSH="/Users/apple/.oh-my-zsh"
 #
 # zsh 提示符主图
 ZSH_THEME="spaceship"
-
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -107,7 +109,6 @@ export LANG=en_US.UTF-8
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export GOPATH='/home/apple/mygo'
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/opt/apr/bin:$PATH"
@@ -120,31 +121,59 @@ export LDFLAGS="-L/usr/local/opt/qt/lib"
 export CPPFLAGS="-I/usr/local/opt/qt/include"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/sqlite/lib"
-export CPPFLAGS="-I/usr/local/opt/sqlite/include"
-export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 export PATH="/usr/local/opt/openldap/bin:$PATH"
 export PATH="/usr/local/opt/openldap/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+# Specify your defaults in this environment variable
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow -E ".git" -E "node_modules"'
-export FZF_DEFAULT_OPTS='--height 90% --layout=reverse --bind=CTRL-j:down,CTRL-k:up,CTRL-r:toggle+down --border --preview "cat {}" --preview-window=right'
-
-_fzf_compgen_path() {
-  fd --hidden --follow -E ".git" -E "node_modules" 
-}
-
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow -E ".git" -E "node_modules" 
-}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+export FZF_DEFAULT_OPTS='--height 95% --layout=reverse --border --info inline --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500"'
+
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,vendor} --type f"
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+# (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -400' ;;
+    export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
+    ssh)          fzf "$@" --preview 'dig {}' ;;
+    *)            fzf "$@" ;;
+  esac
+}
 
 # brew
 alias bi="brew install"
 alias bci="brew cask install"
+alias bcu="brew cleanup"
+alias bu="brew update"
+alias bug="brew upgrade"
+alias bd="brew doctor"
 
 # nvim别名
 alias vim='nvim'
@@ -165,10 +194,10 @@ alias c="clear"
 # Create parent directories on demand
 alias mkdir='mkdir -pv'
 
-# Colorize diff output
-alias diff='colordiff'
-
+# bat
 alias cat='bat'
+export BAT_THEME="gruvbox"
+export BAT_CONFIG_PATH="~/.config/bat/config"
 
 # handy short cuts 
 alias ht='history'
@@ -186,3 +215,44 @@ alias laravel='~/.composer/vendor/bin/laravel'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# mysql
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/mysql@5.7/lib"
+
+# sqlite
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+
+# ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
+# python3
+export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/python@3.8/lib/pkgconfig"
+
+# psysh
+export PATH="/Users/apple/.composer/vendor/psy/psysh/bin/:$PATH"
+export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+
+
+# curl
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/curl/lib"
+export CPPFLAGS="-I/usr/local/opt/curl/include"
+export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
+
+# php
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# sqlite
+export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"

@@ -1,21 +1,22 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " auto reload init.vim when editing it
 autocmd! bufwritepost $MYVIMRC :source $MYVIMRC
 
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 2 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
+" python2
+let g:loaded_python_provider = 0
+
 " python3
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python3_host_prog = "/usr/local/opt/python@3.8/bin/python3"
+
 " ruby
 let g:ruby_host_prog = '/usr/local/bin/ruby'
+
 " node
 let g:node_host_prog = '/usr/local/bin/neovim-node-host'
 
-
-" basic map
-inoremap jj <Esc>
 let mapleader = ","      " 定义<leader>键
 let g:maplocalleader = '<space>'
 noremap J 5j
@@ -24,10 +25,6 @@ noremap H ^
 noremap L $
 vnoremap J 5j
 vnoremap K 5k
-
-
-noremap <leader>ga <c-a>
-noremap <leader>gx <c-x>
 
 " window motion
 noremap <c-j> <c-w>j
@@ -41,21 +38,24 @@ noremap <space>wj :set splitbelow<CR>:split<CR>
 noremap <space>wh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap <space>wl :set splitright<CR>:vsplit<CR>
 
+" command line mappings
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
+
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
 noremap <down> :res -5<CR>
 noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 通用设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $SHELL = "/bin/zsh"
 set nocompatible         " 设置不兼容原始vi模式
 set clipboard=unnamed
 set noshowmode
@@ -67,32 +67,36 @@ syntax on                " 自动语法高亮
 set t_Co=256             " 开启256色支持
 set cmdheight=2          " 设置命令行的高度
 set showcmd              " select模式下显示选中的行数
+set showmatch			 " 高亮显示匹配符号
 set laststatus=2         " 总是显示状态栏
 set number               " 开启行号显示
 set numberwidth=1		 " 行号宽度
 set cursorline			 " 高亮光标所在的行
 set cursorcolumn		 " 高亮光标所在的列
-set whichwrap+=<,>,h,l   " 设置光标键跨行
+set whichwrap+=h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
-set timeout
-set termguicolors		 " 开启真彩色支持
-set scrollbind
 
+set termguicolors		 " 开启真彩色支持
+
+" 你喜欢字符串里的 SQL 
+let php_sql_query = 1
+
+" 打开字符串里的 HTML 语法高亮
+let php_htmlInStrings = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype indent on       " 自适应不同语言的智能缩进
 set autoindent
 set smartindent
 set tabstop=4            " 设置编辑时制表符占用空格数
 set shiftwidth=4         " 设置格式化时制表符占用空格数
 set softtabstop=4        " 设置4个空格为制表符
-filetype indent on       " 自适应不同语言的智能缩进
-set wrap                 " 开启折行
 set backspace=2          " 使用回车键正常处理indent,eol,start等
-set foldenable           " 禁用折叠代码
-set textwidth=80
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码补全
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -125,16 +129,15 @@ set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'tpope/vim-fugitive'
+
 " UI
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
-" Plug 'heguohui2018/gruvbox-plus'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" vim 配设方案设计工具包
-" Plug 'lifepillar/vim-colortemplate'
-
+" icon
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/vim-cursorword'
 
@@ -142,23 +145,19 @@ Plug 'itchyny/vim-cursorword'
 Plug 'yianwillis/vimcdoc'
 Plug 'rizzatti/dash.vim'
 
-" fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 " 代码锁进
 Plug 'Yggdroot/indentLine'
 
-
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/vim-easy-align'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+" 注释
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-slash'
-Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 Plug 'liuchengxu/vista.vim'
 
@@ -176,14 +175,10 @@ Plug 'rhysd/clever-f.vim'
 
 " web开发
 Plug 'mattn/emmet-vim',{ 'for': ['html', 'css','scss'] }
-
-Plug 'othree/html5.vim',{'for':['html']}
-Plug 'AndrewRadev/tagalong.vim',{'for':['html']}
-Plug 'hail2u/vim-css3-syntax',{'for':['css','scss']}
+Plug 'othree/html5.vim',{'for':['html','js']}
+Plug 'AndrewRadev/tagalong.vim',{'for':['html','js']}
+Plug 'chemzqm/vim-jsx-improve',{'for':['js']}
 Plug 'ap/vim-css-color'
-Plug 'maxmellon/vim-jsx-pretty',{'for':['js']}
-Plug 'vim-vdebug/vdebug'
-Plug 'heguohui2018/vim-bootstrap4-snippets'
 
 " laravel
 Plug 'tpope/vim-dispatch',{'for':['php']}
@@ -195,21 +190,26 @@ Plug 'jwalton512/vim-blade',{'for':['php']}
 
 " coc.nvim代码补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'tjdevries/coc-zsh',{'for':['sh']}
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'Zaczero/bootstrap-v4-snippets',{'for':['html','php']}
+Plug 'epilande/vim-es2015-snippets',{'for':['js']}
+Plug 'heguohui2018/jquerysnippets',{'for':['js']}
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 
 " markdown插件
-Plug 'SidOfc/mkdx',{'for': [ 'markdown' ]}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' ,'for': ['markdown']}
-Plug 'vimwiki/vimwiki'
-Plug 'liuchengxu/graphviz.vim'
 
-" latex插件
-Plug 'lervag/vimtex',{'for':['tex']}
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'gillescastel/latex-snippets',{'for':['tex']}
-Plug 'KeitaNakamura/tex-conceal.vim',{'for':['tex']}
+" FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+
+" floaterm
+Plug 'voldikss/vim-floaterm'
+Plug 'voldikss/fzf-floaterm'
+
+Plug 'lambdalisue/vim-manpager'
 
 call plug#end()
 
@@ -247,13 +247,15 @@ let g:webdevicons_enable_startify = 1
 
 " indentline
 " 禁用默认缩进线颜色,该用自己自定义的缩进颜色
-let g:indentLine_setColors = 0
-let g:indentLine_noConcealCursor = 1
+" 激活
 let g:indentLine_enabled = 1
-let g:indentLine_color_term = 0
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_fileType = ['html','css','javascript','python','vim','php','markdown','json']
-let g:vim_json_syntax_conceal = 0
+let g:indentLine_setColors = 1
+let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊','├─▸']
+let g:indentLine_fileType = ['c','php','javascript','html','css','vim','sh','json','swift']
+" 正常显示文本
+let g:indentLine_conceallevel =1
+
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -273,10 +275,23 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " vim-easymotion
+let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-map <leader>w <Plug>(easymotion-bd-w)
-nmap <leader>w <Plug>(easymotion-overwin-w)
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
 
+" easyalign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -288,66 +303,9 @@ noremap <leader>\ :Tab /\|<cr>
 noremap <leader>= :Tab /=<cr>
 
 " emmet
-let g:user_emmet_install_global = 0
+let g:user_emmet_install_global = 1
 let g:user_emmet_mode='i' 
 autocmd FileType html,css,scss EmmetInstall
-
-
-" mkdx
-let g:mkdx#settings = {
-    \ 'image_extension_pattern': 'a\?png\|jpe\?g\|gif', 
-    \ 'restore_visual':  1, 
-    \ 'enter': { 'enable': 1, 
-    \ 'shift': 0, 
-    \ 'o': 1, 
-    \ 'shifto': 1, 
-    \ 'malformed': 1 }, 
-    \ 'map':{ 'prefix': '<localleader>', 'enable': 0 }, 
-    \ 'tokens':  { 'enter':  ['-', '*', '>'],
-    \ 'bold':   '**', 'italic': '*',
-    \ 'strike': '',
-    \ 'list':   '-',  'fence':  '',
-    \ 'header': '#' },
-    \ 'checkbox': { 'toggles': [' ', '-', 'x'],
-    \ 'update_tree': 2,
-    \ 'initial_state': ' ' },
-    \ 'toc':{ 'text':       "TOC",
-    \ 'list_token': '-',
-    \ 'position': 0,
-    \ 'update_on_write':   0,
-    \ 'details': {
-    \      'enable':  0,
-    \      'summary': '{{toc.text}}',
-    \      'nesting_level': -1,
-    \      'child_count': 5,
-    \      'child_summary': 'show {{count}} items'
-    \       }
-    \  },
-    \ 'table': { 'divider': '|',
-    \            'header_divider': '-',
-    \            'align': {
-    \               'left':    [],
-    \               'right':   [],
-    \               'center':  [],
-    \               'default': 'center'
-    \            }
-    \          },
-    \ 'links':{ 'external': {
-    \              'enable':     0,
-    \              'timeout':    3,
-    \              'host':       '',
-    \              'relative':   1,
-    \              'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like					Gecko) Chrome/9001.0.0000.000 vim-mkdx/1.9.0'
-    \               },
-    \           'fragment': {
-    \              'jumplist': 1,
-    \              'complete': 1
-    \               }
-    \         },
-    \ 'highlight':    { 'enable': 1 },
-    \ 'auto_update':  { 'enable': 1 },
-    \ 'fold':         { 'enable': 1, 'components': ['toc', 'fence'] }
-    \ }
 
 " markdown preview
 let g:mkdp_auto_start = 1
@@ -363,182 +321,228 @@ let g:mkdp_preview_options = {
 	\ 'disable_sync_scroll': 0,
     \ 'sync_scroll_type': 'middle',
     \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {}
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0
     \ }
 
-" use a custom markdown style must be absolute path
+" " use a custom markdown style must be absolute path
 let g:mkdp_markdown_css = ''
 
-" use a custom highlight style must absolute path
+" " use a custom highlight style must absolute path
 let g:mkdp_highlight_css = ''
 
-" use a custom port to start server or random for empty
+" " use a custom port to start server or random for empty
 let g:mkdp_port = ''
 
-" preview page title
-" ${name} will be replace with the file name
-let g:mkdp_page_title = '「${name}」'
-
-
 " coc
-set shell=/bin/sh
 set nowritebackup
 set signcolumn=yes
 
-" 高亮markdown中代码
-let g:markdown_fenced_languages = ['css', 'js=javascript']
+" 在 vim 启动时启动 coc 服务
+let g:coc_start_at_startup = 1
 
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" 生成单词列表所用的额外 keyword 字符
+autocmd FileType html,css,scss,javascript,vim,python,php let b:coc_additional_keywords = ["-","_",".","#"]
 
-" 显示函数签名
-autocmd FileType html,css,javascript,php,python,shell,markdown let b:coc_additional_keywords = ["-","_","."]
+" 通过 <C-f> 和 <C-d> 去控制浮动窗口的滚动
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
 " 代码片段补全设置
+let g:UltiSnipsExpandTrigger="<c-r>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<tab>'
 
-" 以浮动文本显示文档信息
-nnoremap <silent><leader>ed  :call <SID>show_documentation()<CR>
+
+" 以浮动窗口显示文档信息
+nnoremap <silent> ed :call <SID>show_documentation()<CR>
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
 endfunction
 
-" nnoremap <silent><space>ii  call coc#add_extension('coc-json', 'coc-tsserver', 'coc-word','coc-html','coc-css','coc-phpls','coc-python','coc-vimlsp','vim-sql','coc-snippets','coc-texlab','coc-prettier','coc-highlight','coc-git','coc-explorer','coc-emoji','coc-lists')<CR>
+augroup mygroup
+	autocmd!
+	" Setup formatexpr specified filetype(s).
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	" 显示当前函数签名
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
-" coc-highlight
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" 自动导入扩展,如果没有相关扩展，会自动安装
+let g:coc_global_extensions=[ 
+			\'coc-git',
+			\'coc-emoji',
+			\'coc-word',
+			\'coc-json',
+			\'coc-tsserver',
+			\'coc-html',
+			\'coc-css',
+			\'coc-phpls',
+			\'coc-vimlsp',
+			\'coc-snippets',
+			\'coc-highlight',
+			\'coc-explorer',
+			\'coc-lists',
+			\'coc-clangd',
+			\'coc-sql',
+			\'coc-react-refactor',
+			\'coc-diagnostic',
+			\'coc-yaml',
+			\'coc-floaterm',
+			\'coc-imselect',
+			\'coc-svg',
+			\]
 
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Using CocList
-" Show all diagnostics
-noremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-noremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-noremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-noremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 
 " coc-explorer(文件浏览)
 nmap <leader>n :CocCommand explorer<CR>
 
-" coc-translator
-" popup
-nmap <Leader>tt <Plug>(coc-translator-p)
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\      'position': 'floating',
+\   },
+\   'floatingLeftside': {
+\      'position': 'floating',
+\      'floating-position': 'left-center',
+\      'floating-width': 30,
+\   },
+\   'floatingRightside': {
+\      'position': 'floating',
+\      'floating-position': 'right-center',
+\      'floating-width': 30,
+\   },
+\   'simplify': {
+\     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
 
+" coc-translator
+nmap <Leader>tt <Plug>(coc-translator-p)
 " replace
 nmap <Leader>tr <Plug>(coc-translator-r)
 
+" coc-git
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" 自定义代码片段
-let g:UltiSnipsEditSplit = 'horizontal'
-let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips',"UltiSnips"]
-let g:UltiSnipsExpandTrigger="<leader>gh"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 
 " vista
+let g:vista_default_executive = 'coc'
 let g:vista_sidebar_position = 'vertical botright'
 let g:vista_sidebar_width  = 35
 let g:vista_echo_cursor_strategy = 'floating_win'
-let g:vista_cursor_delay = 200
+let g:vista_cursor_delay = 100
 let g:vista_highlight_whole_line=1
 let g:vista_floating_delay=50
 
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-
-" By default vista.vim never run if you don't call it explicitly.
-"
-" If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc 
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_fzf_preview = ['right:55%']
 let g:vista#renderer#enable_icon = 1
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
-
-" fzf
-" Mapping selecting mappings
-nmap <leader>fz <plug>(fzf-maps-n)
-xmap <leader>fz <plug>(fzf-maps-x)
-omap <leader>fz <plug>(fzf-maps-o)
-
-function! s:fzf_statusline()
-	" Override statusline as you like
-	highlight fzf1 ctermfg=161 ctermbg=251
-	highlight fzf2 ctermfg=23 ctermbg=251
-	highlight fzf3 ctermfg=237 ctermbg=251
-	setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
-
-function! RipgrepFzf(query, fullscreen)
-	let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-	let initial_command = printf(command_fmt, shellescape(a:query))
-	let reload_command = printf(command_fmt, '{q}')
-	let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-	call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+noremap <LEADER>v :Vista coc <CR>
 
 " Dash
 nmap <silent> <leader>d <Plug>DashSearch
 
-" latex
-" vimtex
-let g:vimtex_enabled=1
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method='skim'
-let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_compiler_latexmk_engines = {
-	\ '_'                : '-pdf',
-	\ 'pdflatex'         : '-pdf',
-	\ 'dvipdfex'         : '-pdfdvi',
-	\ 'lualatex'         : '-lualatex',
-	\ 'xelatex'          : '-xelatex',
-	\ 'context (pdftex)' : '-pdf -pdflatex=texexec',
-	\ 'context (luatex)' : '-pdf -pdflatex=context',
-	\ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
-	\}
-let g:livepreview_previewer = 'skim'
-let g:livepreview_engine = 'pdflatex'
-let g:livepreview_cursorhold_recompile = 1
-hi Conceal ctermbg=none
-setlocal spell
-set spelllang=en_us
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" FZF
+set shell=/bin/zsh
+set viminfo='2000
+" floating window size ratio
+let g:fzf_preview_floating_window_rate = 1
+
+" fzf command default options
+let g:fzf_preview_default_fzf_options = {}
+
+" Add fzf quit mapping
+let g:fzf_preview_quit_map = 1
+
+let g:fzf_preview_command = 'bat --color=always --plain {-1}' " Installed bat
+" Commands used for binary file
+let g:fzf_binary_preview_command = 'echo "{} is a binary file"'
+
+" Commands used to get the file list from project
+let g:fzf_preview_filelist_command = 'git ls-files --exclude-standard'    
+let g:fzf_preview_lines_command = 'bat --color=always --plain --number' " Installed bat
+" Use vim-devicons
+let g:fzf_preview_use_dev_icons = 1
+" devicons character width
+let g:fzf_preview_dev_icon_prefix_string_length = 3
+let g:fzf_preview_dev_icons_limit = 5000
+
+" jsx
+let g:jsx_improve_javascriptreact = 1
+
+" 启动画面
+let g:startify_custom_header = [
+                \ '   __      ___              _  _______     _________ ',
+                \ '   \ \    / (_)            | | | |____ \  | |_______|',
+                \ '    \ \  / / _ _ __ ___    | | | |    | \ | |_______ ',
+                \ '     \ \/ / | | `_ ` _ \   | | | |    | | | |_______|',
+                \ '      \  /  | | | | | | |  | | | |____| | | |_______ ',
+                \ '       \/   |_|_| |_| |_|  |_| |_|_____/  |_|_______|',
+                \ '',
+                \ '                      https://github.com',
+                \ '',
+                \ ]
+let g:startify_custom_footer = [
+                \ '',
+                \ '',
+                \ '   适用于 web 开发！',
+                \ ]
+
+
+" floaterm
+" 窗口类型
+let g:floaterm_wintype = 'floating'
+let floaterm_position = "center"
+let g:floaterm_width = 0.95
+let g:floaterm_height = 0.95
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
+let g:floaterm_gitcommit = "floaterm"
+hi FloatermBorder guifg=pink
+
+let g:floaterm_keymap_toggle = '<space>ft'
+let g:floaterm_keymap_next   = '<space>fj'
+let g:floaterm_keymap_prev   = '<space>fk'
+let g:floaterm_keymap_new    = '<space>fw'
+let g:floaterm_keymap_hide = '<space>hw'
+let g:floaterm_keymap_show= '<space>sw'
+let g:floaterm_keymap_kill = '<space>ki'
+
+

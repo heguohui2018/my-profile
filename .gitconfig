@@ -4,24 +4,27 @@
 	process = git-lfs filter-process
 	required = true
 
-; 设置git的用户名和邮箱
 [user]
+	; 设置git的用户名和邮箱
 	name = heguohui2018
 	email = heguohui2017@outlook.com
 
-; 设置默认编辑器为neovim
 [core]
+	; neovim设置为默认编辑器
 	editor = nvim
+
 	excludesfile = ~/.gitignore_global
 
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+
+; 命令别名
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 25 commits
 	l = log --pretty=oneline -n 25 --graph --abbrev-commit
 
-	# View the current working tree status using the short format
+	# 查看当前工作空间状态
 	s = status -s
 
 	# Show the diff between the latest commit and the current state
@@ -127,9 +130,15 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = vimdiff
 
 [push]
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/apple/.stCommitMsg
