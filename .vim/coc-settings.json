@@ -1,0 +1,239 @@
+{
+    /*激活浮动窗口高亮*/
+    "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.colorSupport": true,
+
+    /*显示光标所指的函数名*/
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+
+    /*移动到选贤时浮动窗口支持*/
+    "coc.preferences.hoverTarget": "float",
+    "coc.preferences.snippets.enable": true,
+
+    "coc.preferences.formatOnInsertLeave": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "html",
+        "css",
+        "scss",
+        "json",
+        "php",
+        "javascript",
+        "python",
+        "vim",
+        "markdown",
+        "c",
+        "swift"
+    ],
+    "coc.source.zsh.enable": true,
+    "coc.source.zsh.priority": 9,
+
+    "coc.source.word.enable": true,
+    "coc.source.word.priority": 70,
+
+    "coc.source.emoji.enable": true,
+    "coc.source.emoji.priority": 3,
+
+    "coc.source.buffer.enable": true,
+    "coc.source.buffer.priority": 80,
+
+    "coc.source.file.enable": true,
+    "coc.source.file.priority": 50,
+
+    "coc.source.around.enable": true,
+    "coc.source.around.priority": 50,
+
+    /*代码补全时自动选择第一项*/
+    "suggest.noselect": false,
+    "suggest.enablePreselect": true,
+    "suggest.fixInsertedWord": true,
+    /*当插入时触发代码补全*/
+    "suggest.triggerAfterInsertEnter": true,
+    /*浮动激活*/
+    "suggest.floatEnable": true,
+    "suggest.removeDuplicateItems": true,
+    "suggest.detailMaxLength": 30,
+    "snippets.snipmate.enable": true,
+    "snippets.priority": 90,
+    "snippets.loadFromExtensions": true,
+
+    // json
+    "json.enable": true,
+    "json.format.enable": true,
+
+    // html
+    "html.enable": true,
+    "html.format.enable": true,
+    "html.suggest.html5": true,
+    "html.validate.html": true,
+    "html.validate.scripts": true,
+    "html.validate.styles": true,
+    "html.autoClosingTags": true,
+
+    // css
+    "css.enable": true,
+    "css.validate": true,
+    "css.completion.completePropertyWithSemicolon": true,
+    "css.lint.float": "ignore",
+    "scss.lint.float": "ignore",
+
+    //单词翻译
+    "translator.engines": ["google", "bing", "haici"],
+
+    //javascript
+    "tsserver.enable": true,
+    "typescript.suggest.enabled": true,
+    //显示未使用的变量
+    "javascript.showUnused": true,
+    "javascript.suggest.enabled": true,
+    "javascript.suggest.names": true,
+    "javascript.suggest.autoImports": true,
+    "javascript.suggest.completeFunctionCalls": true,
+    "javascript.suggestionActions.enabled": true,
+    "javascript.referencesCodeLens.enable": true,
+
+    //启用代码格式化
+    "javascript.format.enabled": true,
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+    "javascript.validate.enable": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+
+    // php
+    "phpls.enable": true,
+    "intelephense.format.enable": true,
+    "intelephense.environment.shortOpenTag": true,
+    "intelephense.diagnostics.enable": true,
+    "intelephense.diagnostics.typeErrors": true,
+    "intelephense.completion.triggerParameterHints": true,
+    "intelephense.compatibility.correctForArrayAccessArrayAndTraversableArrayUnionTypes": true,
+
+    // c
+    "clangd.enabled": true,
+    "clangd.checkUpdates": true,
+    "clangd.semanticHighlighting": true,
+
+    // vim
+    "vimlsp.diagnostic.enable": true,
+    "vimlsp.filetypes": ["vim"],
+
+    //highlightn
+    "highlight.document.enable": true,
+    "highlight.colors.enable": true,
+
+    //git
+    "git.enableGlobalStatus": true,
+
+    //
+    "diagnostic.enable": true,
+    "diagnostic.enableMessage": "always",
+    "diagnostic.virtualText": false,
+    "diagnostic.messageTarget": "float",
+    "diagnostic.messageDelay": 50,
+    "diagnostic.refreshAfterSave": false,
+    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.separateRelatedInformationAsDiagnostics": true,
+    "diagnostic-languageserver.enable": true,
+    "diagnostic.enableSign": true,
+
+    "explorer.position": "left",
+    "explorer.floating.position": "center",
+    "explorer.floating.width": -10,
+    "explorer.floating.height": -5,
+    "explorer.floating.border.title": " <--- coc-explorer:文件浏览器--->",
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.enableVimDevicons": true,
+    "explorer.previewAction.onHover": true,
+    "explorer.quitOnOpen": true,
+    "explorer.file.column.git.icon.mixed": "*",
+    "explorer.keyMappings.global": {
+        "i": false,
+        "gk": "expandablePrev",
+        "gj": "expandableNext",
+        "*": "toggleSelection",
+        "<tab>": "actionMenu",
+        "h": "collapse",
+        "l": ["expandable?", "expand", "open"],
+        "J": ["toggleSelection", "nodeNext"],
+        "K": ["toggleSelection", "nodePrev"],
+        "gl": "expandRecursive",
+        "gh": "collapseRecursive",
+        "<2-LeftMouse>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+        "o": ["expanded?", "collapse", "expand"],
+        "<cr>": ["expandable?", "cd", "open"],
+        "e": "open",
+        "s": "open:split",
+        "S": "open:split:plain",
+        "E": "open:vsplit",
+        "t": "open:tab",
+        "<bs>": "gotoParent",
+        "gp": "preview:labeling",
+
+        "y": "copyFilepath",
+        "Y": "copyFilename",
+        "c": "copyFile",
+        "x": "cutFile",
+        "p": "pasteFile",
+        "d": "delete",
+        "D": "deleteForever",
+
+        "a": "addFile",
+        "A": "addDirectory",
+        "r": "rename",
+
+        ".": "toggleHidden",
+        "R": "refresh",
+
+        "?": "help",
+        "q": "quit",
+        "<esc>": "esc",
+        "X": "systemExecute",
+        "gd": "listDrive",
+
+        "f": "search",
+        "F": "searchRecursive",
+
+        "gf": "gotoSource:file",
+        "gb": "gotoSource:buffer",
+
+        "[[": "sourcePrev",
+        "]]": "sourceNext",
+
+        "[d": "diagnosticPrev",
+        "]d": "diagnosticNext",
+
+        "[c": "gitPrev",
+        "]c": "gitNext",
+        "<<": "gitStage",
+        ">>": "gitUnstage"
+    },
+
+    //
+    "sql.database": "mysql",
+    "sql.lintOnOpen": true,
+    "sql.lintOnSave": true,
+    "sql.lintOnChange": true,
+
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 90,
+    // 单引号代替双引号
+    "prettier.singleQuote": false,
+    "prettier.bracketSpacing": true,
+    "prettier.arrowParens": "always",
+    /* 在行尾添加分号*/
+    "prettier.semi": true,
+
+    //yaml
+    "yaml.format.enable": true,
+    "yaml.format.singleQuote": true,
+    "yaml.format.bracketSpacing": true,
+    "yaml.completion": true,
+    "yaml.hover": true,
+
+    "refactor.openCommand": "float",
+    "refactor.afterContext": 3,
+
+    "imselect.enableStatusItem": true,
+    "imselect.enableFloating": true
+}
