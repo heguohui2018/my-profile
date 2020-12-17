@@ -8,10 +8,11 @@ set ruler
 " 不显示状态行
 " set laststatus=0
 " 共用剪贴板
-" set clipboard=unnamed
+set clipboard=unnamed
 set number
 " 开启相对行号
-set relativenumber
+" set relativenumber
+set numberwidth
 set colorcolumn=+1
 " 分隔窗口在当前窗口右边/下边
 set splitright

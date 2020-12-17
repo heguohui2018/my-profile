@@ -1,0 +1,99 @@
+# SwitchHosts!
+
+# My hosts
+
+# 解决 curl: (7) Failed to connect to raw.github.com port 443: Connection refused 报错
+
+199.232.68.133 raw.githubusercontent.com
+199.232.68.133 user-images.githubusercontent.com
+199.232.68.133 avatars2.githubusercontent.com
+199.232.68.133 avatars1.githubusercontent.com
+
+199.232.96.133 raw.github.com
+199.232.96.133 raw.githubusercontent.com
+199.232.96.133 camo.githubusercontent.com
+199.232.96.133 desktop.githubusercontent.com
+
+185.199.108.153 ranger.github.io
+185.199.109.153 ranger.github.io
+185.199.110.153 ranger.github.io 
+185.199.111.153 ranger.github.io
+
+# GitHub520 Host Start
+185.199.108.154               github.githubassets.com
+199.232.96.133                camo.githubusercontent.com
+199.232.96.133                github.map.fastly.net
+199.232.69.194                github.global.ssl.fastly.net
+140.82.114.3                  gist.github.com
+185.199.108.153               github.io
+140.82.113.3                  github.com
+140.82.112.6                  api.github.com
+199.232.96.133                raw.githubusercontent.com
+199.232.96.133                user-images.githubusercontent.com
+199.232.96.133                favicons.githubusercontent.com
+199.232.96.133                avatars5.githubusercontent.com
+199.232.96.133                avatars4.githubusercontent.com
+199.232.96.133                avatars3.githubusercontent.com
+199.232.96.133                avatars2.githubusercontent.com
+199.232.96.133                avatars1.githubusercontent.com
+52.176.46.96                  avatars0.githubusercontent.com
+140.82.112.10                 codeload.github.com
+52.216.128.147                github-cloud.s3.amazonaws.com
+52.217.39.108                 github-com.s3.amazonaws.com
+52.216.107.188                github-production-release-asset-2e65be.s3.amazonaws.com
+52.217.17.148                 github-production-user-asset-6210df.s3.amazonaws.com
+52.217.96.108                 github-production-repository-file-5c1aeb.s3.amazonaws.com
+# Star me GitHub url: https://github.com/521xueweihan/GitHub520
+# GitHub520 Host End
+
+
+104.16.16.35 https://registry.yarnpkg.com
+104.16.17.35 https://registry.yarnpkg.com
+104.16.18.35 https://registry.yarnpkg.com
+104.16.19.35 https://registry.yarnpkg.com
+104.16.20.35 https://registry.yarnpkg.com
+104.16.21.35 https://registry.yarnpkg.com
+104.16.22.35 https://registry.yarnpkg.com
+104.16.23.35 https://registry.yarnpkg.com
+104.16.24.35 https://registry.yarnpkg.com
+104.16.25.35 https://registry.yarnpkg.com
+104.16.26.35 https://registry.yarnpkg.com
+104.16.27.35 https://registry.yarnpkg.com
+
+47.246.23.227 https://registry.npm.taobao.org
+47.246.23.228 https://registry.npm.taobao.org
+47.246.23.229 https://registry.npm.taobao.org
+47.246.23.230 https://registry.npm.taobao.org
+47.246.23.231 https://registry.npm.taobao.org
+47.246.23.232 https://registry.npm.taobao.org
+47.246.23.233 https://registry.npm.taobao.org
+47.246.23.234 https://registry.npm.taobao.org
+
+127.0.0.1	coderunnerapp.com
+
+# GitHub520 Host Start
+23.100.83.81                  github.githubassets.com
+199.232.96.133                camo.githubusercontent.com
+199.232.96.133                github.map.fastly.net
+199.232.69.194                github.global.ssl.fastly.net
+140.82.113.4                  gist.github.com
+185.199.108.153               github.io
+140.82.114.3                  github.com
+140.82.113.6                  api.github.com
+199.232.96.133                raw.githubusercontent.com
+199.232.96.133                user-images.githubusercontent.com
+199.232.96.133                favicons.githubusercontent.com
+199.232.96.133                avatars5.githubusercontent.com
+199.232.96.133                avatars4.githubusercontent.com
+199.232.96.133                avatars3.githubusercontent.com
+199.232.96.133                avatars2.githubusercontent.com
+199.232.96.133                avatars1.githubusercontent.com
+199.232.96.133                avatars0.githubusercontent.com
+140.82.112.10                 codeload.github.com
+52.216.128.147                github-cloud.s3.amazonaws.com
+52.216.233.43                 github-com.s3.amazonaws.com
+52.216.107.188                github-production-release-asset-2e65be.s3.amazonaws.com
+52.217.17.148                 github-production-user-asset-6210df.s3.amazonaws.com
+52.216.9.75                   github-production-repository-file-5c1aeb.s3.amazonaws.com
+# Star me GitHub url: https://github.com/521xueweihan/GitHub520
+# GitHub520 Host End

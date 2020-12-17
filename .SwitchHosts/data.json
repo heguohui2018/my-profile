@@ -1,0 +1,34 @@
+{
+  "list": [{
+    "id": "1607731404119-288200",
+    "title": "My hosts",
+    "content": "# My hosts\n\n# 解决 curl: (7) Failed to connect to raw.github.com port 443: Connection refused 报错\n\n199.232.68.133 raw.githubusercontent.com\n199.232.68.133 user-images.githubusercontent.com\n199.232.68.133 avatars2.githubusercontent.com\n199.232.68.133 avatars1.githubusercontent.com\n\n199.232.96.133 raw.github.com\n199.232.96.133 raw.githubusercontent.com\n199.232.96.133 camo.githubusercontent.com\n199.232.96.133 desktop.githubusercontent.com\n\n185.199.108.153 ranger.github.io\n185.199.109.153 ranger.github.io\n185.199.110.153 ranger.github.io \n185.199.111.153 ranger.github.io\n\n# GitHub520 Host Start\n185.199.108.154               github.githubassets.com\n199.232.96.133                camo.githubusercontent.com\n199.232.96.133                github.map.fastly.net\n199.232.69.194                github.global.ssl.fastly.net\n140.82.114.3                  gist.github.com\n185.199.108.153               github.io\n140.82.113.3                  github.com\n140.82.112.6                  api.github.com\n199.232.96.133                raw.githubusercontent.com\n199.232.96.133                user-images.githubusercontent.com\n199.232.96.133                favicons.githubusercontent.com\n199.232.96.133                avatars5.githubusercontent.com\n199.232.96.133                avatars4.githubusercontent.com\n199.232.96.133                avatars3.githubusercontent.com\n199.232.96.133                avatars2.githubusercontent.com\n199.232.96.133                avatars1.githubusercontent.com\n52.176.46.96                  avatars0.githubusercontent.com\n140.82.112.10                 codeload.github.com\n52.216.128.147                github-cloud.s3.amazonaws.com\n52.217.39.108                 github-com.s3.amazonaws.com\n52.216.107.188                github-production-release-asset-2e65be.s3.amazonaws.com\n52.217.17.148                 github-production-user-asset-6210df.s3.amazonaws.com\n52.217.96.108                 github-production-repository-file-5c1aeb.s3.amazonaws.com\n# Star me GitHub url: https://github.com/521xueweihan/GitHub520\n# GitHub520 Host End\n\n\n104.16.16.35 https://registry.yarnpkg.com\n104.16.17.35 https://registry.yarnpkg.com\n104.16.18.35 https://registry.yarnpkg.com\n104.16.19.35 https://registry.yarnpkg.com\n104.16.20.35 https://registry.yarnpkg.com\n104.16.21.35 https://registry.yarnpkg.com\n104.16.22.35 https://registry.yarnpkg.com\n104.16.23.35 https://registry.yarnpkg.com\n104.16.24.35 https://registry.yarnpkg.com\n104.16.25.35 https://registry.yarnpkg.com\n104.16.26.35 https://registry.yarnpkg.com\n104.16.27.35 https://registry.yarnpkg.com\n\n47.246.23.227 https://registry.npm.taobao.org\n47.246.23.228 https://registry.npm.taobao.org\n47.246.23.229 https://registry.npm.taobao.org\n47.246.23.230 https://registry.npm.taobao.org\n47.246.23.231 https://registry.npm.taobao.org\n47.246.23.232 https://registry.npm.taobao.org\n47.246.23.233 https://registry.npm.taobao.org\n47.246.23.234 https://registry.npm.taobao.org\n\n127.0.0.1\tcoderunnerapp.com",
+    "on": true,
+    "where": "local",
+    "folder_mode": 0,
+    "url": "",
+    "last_refresh": null,
+    "refresh_interval": 0,
+    "include": [],
+    "children": []
+  }, {
+    "id": "1607731404119-798714",
+    "title": "backup",
+    "content": "##\n# Host Database\n#\n# localhost is used to configure the loopback interface\n# when the system is booting.  Do not change this entry.\n##\n127.0.0.1\tlocalhost\n255.255.255.255\tbroadcasthost\n::1             localhost\n",
+    "on": false,
+    "children": []
+  }, {
+    "id": "1607867020093-152164",
+    "title": "让你\"爱\"上 GitHub",
+    "content": "# GitHub520 Host Start\n23.100.83.81                  github.githubassets.com\n199.232.96.133                camo.githubusercontent.com\n199.232.96.133                github.map.fastly.net\n199.232.69.194                github.global.ssl.fastly.net\n140.82.113.4                  gist.github.com\n185.199.108.153               github.io\n140.82.114.3                  github.com\n140.82.113.6                  api.github.com\n199.232.96.133                raw.githubusercontent.com\n199.232.96.133                user-images.githubusercontent.com\n199.232.96.133                favicons.githubusercontent.com\n199.232.96.133                avatars5.githubusercontent.com\n199.232.96.133                avatars4.githubusercontent.com\n199.232.96.133                avatars3.githubusercontent.com\n199.232.96.133                avatars2.githubusercontent.com\n199.232.96.133                avatars1.githubusercontent.com\n199.232.96.133                avatars0.githubusercontent.com\n140.82.112.10                 codeload.github.com\n52.216.128.147                github-cloud.s3.amazonaws.com\n52.216.233.43                 github-com.s3.amazonaws.com\n52.216.107.188                github-production-release-asset-2e65be.s3.amazonaws.com\n52.217.17.148                 github-production-user-asset-6210df.s3.amazonaws.com\n52.216.9.75                   github-production-repository-file-5c1aeb.s3.amazonaws.com\n# Star me GitHub url: https://github.com/521xueweihan/GitHub520\n# GitHub520 Host End\n",
+    "on": true,
+    "where": "remote",
+    "folder_mode": 0,
+    "url": "https://gitee.com/xueweihan/codes/6g793pm2k1hacwfbyesl464/raw?blob_name=GitHub520.yml",
+    "last_refresh": "2020-12-17 04:51:04",
+    "refresh_interval": 1,
+    "include": [],
+    "children": []
+  }],
+  "version": [3, 5, 6, 5551]
+}

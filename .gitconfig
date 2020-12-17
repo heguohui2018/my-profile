@@ -142,3 +142,6 @@
 	trustExitCode = true
 [commit]
 	template = /Users/apple/.stCommitMsg
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
